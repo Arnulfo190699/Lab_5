@@ -7,9 +7,21 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "Master.c" 2
+# 13 "Master.c"
+#pragma config FOSC = INTRC_NOCLKOUT
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = OFF
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
+#pragma config LVP = OFF
 
 
-
+#pragma config BOR4V = BOR40V
+#pragma config WRT = OFF
 
 
 
@@ -2499,10 +2511,9 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 9 "Master.c" 2
+# 31 "Master.c" 2
 
-# 1 "./I2C.h" 1
-# 36 "./I2C.h"
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int8_t;
@@ -2636,6 +2647,11 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
+# 33 "Master.c" 2
+
+# 1 "./I2C.h" 1
+# 36 "./I2C.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
 # 36 "./I2C.h" 2
 # 45 "./I2C.h"
 void I2C_Master_Init(const unsigned long c);
@@ -2674,7 +2690,7 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 10 "Master.c" 2
+# 34 "Master.c" 2
 
 # 1 "./LCD.h" 1
 
@@ -2694,25 +2710,73 @@ void Lcd_Set_Cursor(uint8_t posy, uint8_t posx);
 void Lcd_Write_Char(char var);
 void Lcd_Write_String(char *var);
 void Lcd_Write_Int(uint8_t numero);
-# 11 "Master.c" 2
+# 35 "Master.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
-# 12 "Master.c" 2
+# 36 "Master.c" 2
 
 
 
+
+uint8_t VAL_1 = 0;
+uint8_t VAL_2 = 0;
+uint8_t ENT_1 = 0;
+uint8_t DEC_1 = 0;
+uint8_t DEC_2 = 0;
 
 
 void main(void) {
 
 
+    TRISA = 0b11111111;
+    TRISB = 0;
+    TRISC = 0;
+    TRISD = 0;
+
+    ANSEL = 0;
+
+    PORTA = 0;
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
+
+
     initLCD();
     Lcd_Clear();
+    I2C_Master_Init(100000);
+    Lcd_Clear();
     Lcd_Set_Cursor(1,1);
-    Lcd_Write_String ("Val_1");
+    Lcd_Write_String ("S1");
     Lcd_Set_Cursor(7,1);
-    Lcd_Write_String ("Val_2");
+    Lcd_Write_String ("S2");
     Lcd_Set_Cursor(13,1);
-    Lcd_Write_String ("TTL");
-    return;
+    Lcd_Write_String ("S3");
+
+    while(1){
+
+        I2C_Master_Start();
+        I2C_Master_Write(0x51);
+        VAL_1 = I2C_Master_Read(0);
+        I2C_Master_Stop();
+        _delay((unsigned long)((10)*(4000000/4000.0)));
+
+        VAL_1 = VAL_1 * 5/255;
+        ENT_1 = VAL_1;
+        DEC_2 = (VAL_1 - ENT_1)*100;
+        DEC_1= DEC_2;
+
+
+        Lcd_Set_Cursor(1,2);
+        Lcd_Write_Int(ENT_1);
+        Lcd_Write_Char('.');
+        if (DEC_1 >= 10){
+            Lcd_Write_Int(DEC_1);
+        }else{
+            Lcd_Write_Char('0');
+            Lcd_Write_Int(DEC_1);
+        }
+        Lcd_Write_Char('V');
+
+    }
+
 }

@@ -1,4 +1,4 @@
-# 1 "I2C.c"
+# 1 "Slave1.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,10 +6,22 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "I2C.c" 2
+# 1 "Slave1.c" 2
+# 14 "Slave1.c"
+#pragma config FOSC = INTRC_NOCLKOUT
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = OFF
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
+#pragma config LVP = OFF
 
 
-
+#pragma config BOR4V = BOR40V
+#pragma config WRT = OFF
 
 
 
@@ -2499,7 +2511,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 9 "I2C.c" 2
+# 32 "Slave1.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
@@ -2634,7 +2646,17 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 10 "I2C.c" 2
+# 33 "Slave1.c" 2
+
+# 1 "./ADC.h" 1
+# 35 "./ADC.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
+# 35 "./ADC.h" 2
+
+
+void ADCCONFIG( uint8_t ADnum);
+# 34 "Slave1.c" 2
+
 
 # 1 "./I2C.h" 1
 # 36 "./I2C.h"
@@ -2677,99 +2699,110 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 11 "I2C.c" 2
-
-
-
-
-
-void I2C_Master_Init(const unsigned long c)
-{
-    SSPCON = 0b00101000;
-    SSPCON2 = 0;
-    SSPADD = ( 8000000 /(4*c))-1;
-    SSPSTAT = 0;
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
-}
+# 36 "Slave1.c" 2
 
 
 
 
 
 
+uint8_t z;
+uint8_t dato;
+uint8_t bandera = 0;
+uint8_t ENT_1 = 0;
+uint8_t ENT_2 = 0;
+uint8_t DEC_1 = 0;
+uint8_t DEC_2 = 0;
+uint8_t TTL = 0;
 
-void I2C_Master_Wait()
-{
-    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
-}
-
-
-
-void I2C_Master_Start()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.SEN = 1;
-}
-
-
-
-void I2C_Master_RepeatedStart()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.RSEN = 1;
-}
-
-
-
-void I2C_Master_Stop()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.PEN = 1;
-}
+float ADC_1 = 0;
+float ADC_2 = 0;
+float DECIMAL1_1 = 0;
+float DECIMAL2_2 = 0;
 
 
 
 
 
-void I2C_Master_Write(unsigned d)
-{
-    I2C_Master_Wait();
-    SSPBUF = d;
-}
+void setup(void);
 
 
 
+void __attribute__((picinterrupt(("")))) isr(void){
 
-unsigned short I2C_Master_Read(unsigned short a)
-{
-    unsigned short temp;
-    I2C_Master_Wait();
-    SSPCON2bits.RCEN = 1;
-    I2C_Master_Wait();
-    temp = SSPBUF;
-    I2C_Master_Wait();
-    if(a == 1){
-        SSPCON2bits.ACKDT = 0;
-    }else{
-        SSPCON2bits.ACKDT = 1;
+    if(ADCON0bits.GO_DONE == 0){
+        bandera = 1;
+        PIR1bits.ADIF = 0;
+        }
+
+    if(PIR1bits.SSPIF == 1){
+
+        SSPCONbits.CKP = 0;
+
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+            z = SSPBUF;
+            SSPCONbits.SSPOV = 0;
+            SSPCONbits.WCOL = 0;
+            SSPCONbits.CKP = 1;
+        }
+
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+
+            z = SSPBUF;
+
+            PIR1bits.SSPIF = 0;
+            SSPCONbits.CKP = 1;
+            while(!SSPSTATbits.BF);
+            PORTD = SSPBUF;
+            _delay((unsigned long)((250)*(4000000/4000000.0)));
+
+        }
+        else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+            z = SSPBUF;
+            BF = 0;
+            SSPBUF = PORTB;
+            SSPCONbits.CKP = 1;
+            _delay((unsigned long)((250)*(4000000/4000000.0)));
+            while(SSPSTATbits.BF);
+        }
+
+        PIR1bits.SSPIF = 0;
+
+
     }
-    SSPCON2bits.ACKEN = 1;
-    return temp;
+
+
+
+
 }
 
 
 
-void I2C_Slave_Init(uint8_t address)
-{
-    SSPADD = address;
-    SSPCON = 0x36;
-    SSPSTAT = 0x80;
-    SSPCON2 = 0x01;
-    TRISC3 = 1;
-    TRISC4 = 1;
-    GIE = 1;
-    PEIE = 1;
-    SSPIF = 0;
-    SSPIE = 1;
+void main(void) {
+    ANSEL = 0b00000001;
+    ANSELH = 0;
+
+    TRISA = 0b00000001;
+    TRISB = 0;
+    TRISD = 0;
+
+    PORTA = 0;
+    PORTB = 0;
+    PORTD = 0;
+    I2C_Slave_Init(0x50);
+
+
+
+
+    while(1){
+        ADCCONFIG(0);
+        if(bandera){
+            ADC_1 = ADRESH;
+            PORTB = ADC_1;
+            bandera = 0;
+            ADCON0bits.GO_DONE = 1;
+        }
+
+    }
+    return;
 }

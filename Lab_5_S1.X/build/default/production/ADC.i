@@ -1,4 +1,4 @@
-# 1 "I2C.c"
+# 1 "ADC.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "I2C.c" 2
+# 1 "ADC.c" 2
 
 
 
@@ -14,46 +14,6 @@
 
 
 
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
-# 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\xc8debug.h" 1 3
-# 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\xc8debug.h" 3
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
-# 23 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 1 3
-
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\htc.h" 1 3
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
-# 4 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\htc.h" 2 3
-# 5 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 2 3
-
-
-
-
-
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic_chip_select.h" 1 3
-# 2703 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic_chip_select.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic16f887.h" 1 3
 # 44 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic16f887.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\__at.h" 1 3
@@ -2465,41 +2425,7 @@ extern volatile __bit nW __attribute__((address(0x4A2)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x4A2)));
-# 2703 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic_chip_select.h" 2 3
-# 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 2 3
-# 30 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 3
-#pragma intrinsic(__nop)
-extern void __nop(void);
-# 78 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 3
-__attribute__((__unsupported__("The " "FLASH_READ" " macro function is no longer supported. Please use the MPLAB X MCC."))) unsigned char __flash_read(unsigned short addr);
-
-__attribute__((__unsupported__("The " "FLASH_WRITE" " macro function is no longer supported. Please use the MPLAB X MCC."))) void __flash_write(unsigned short addr, unsigned short data);
-
-__attribute__((__unsupported__("The " "FLASH_ERASE" " macro function is no longer supported. Please use the MPLAB X MCC."))) void __flash_erase(unsigned short addr);
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\eeprom_routines.h" 1 3
-# 114 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\eeprom_routines.h" 3
-extern void eeprom_write(unsigned char addr, unsigned char value);
-extern unsigned char eeprom_read(unsigned char addr);
-# 85 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 2 3
-
-
-
-
-
-
-#pragma intrinsic(_delay)
-extern __attribute__((nonreentrant)) void _delay(unsigned long);
-#pragma intrinsic(_delaywdt)
-extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
-# 137 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 3
-extern __bank0 unsigned char __resetbits;
-extern __bank0 __bit __powerdown;
-extern __bank0 __bit __timeout;
-# 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 9 "I2C.c" 2
+# 8 "ADC.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
@@ -2634,142 +2560,219 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 10 "I2C.c" 2
+# 9 "ADC.c" 2
 
-# 1 "./I2C.h" 1
-# 36 "./I2C.h"
+
+# 1 "./ADC.h" 1
+# 34 "./ADC.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
+# 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\xc8debug.h" 1 3
+# 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\xc8debug.h" 3
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
+# 23 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
+
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 1 3
+
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\htc.h" 1 3
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
+# 4 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\htc.h" 2 3
+# 5 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 2 3
+
+
+
+
+
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic_chip_select.h" 1 3
+# 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 2 3
+# 30 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 3
+#pragma intrinsic(__nop)
+extern void __nop(void);
+# 78 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 3
+__attribute__((__unsupported__("The " "FLASH_READ" " macro function is no longer supported. Please use the MPLAB X MCC."))) unsigned char __flash_read(unsigned short addr);
+
+__attribute__((__unsupported__("The " "FLASH_WRITE" " macro function is no longer supported. Please use the MPLAB X MCC."))) void __flash_write(unsigned short addr, unsigned short data);
+
+__attribute__((__unsupported__("The " "FLASH_ERASE" " macro function is no longer supported. Please use the MPLAB X MCC."))) void __flash_erase(unsigned short addr);
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\eeprom_routines.h" 1 3
+# 114 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\eeprom_routines.h" 3
+extern void eeprom_write(unsigned char addr, unsigned char value);
+extern unsigned char eeprom_read(unsigned char addr);
+# 85 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 2 3
+
+
+
+
+
+
+#pragma intrinsic(_delay)
+extern __attribute__((nonreentrant)) void _delay(unsigned long);
+#pragma intrinsic(_delaywdt)
+extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
+# 137 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\pic.h" 3
+extern __bank0 unsigned char __resetbits;
+extern __bank0 __bit __powerdown;
+extern __bank0 __bit __timeout;
+# 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
+# 34 "./ADC.h" 2
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
-# 36 "./I2C.h" 2
-# 45 "./I2C.h"
-void I2C_Master_Init(const unsigned long c);
+# 35 "./ADC.h" 2
 
 
+void ADCCONFIG( uint8_t ADnum);
+# 11 "ADC.c" 2
 
 
+void ADCCONFIG (uint8_t ADnum){
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
 
 
+    PIE1bits.ADIE = 1;
+    PIR1bits.ADIF = 1;
 
-void I2C_Master_Wait(void);
-
-
-
-void I2C_Master_Start(void);
-
-
-
-void I2C_Master_RepeatedStart(void);
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADON = 1;
 
 
+    switch(ADnum){
+        case 0:
+            ADCON0bits.CHS3 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 0;
+            break;
 
-void I2C_Master_Stop(void);
+        case 1:
+            ADCON0bits.CHS3 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 1;
+            break;
 
+        case 2:
+            ADCON0bits.CHS3 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS0 = 0;
+            break;
 
+        case 3:
+            ADCON0bits.CHS3 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS0 = 1;
+            break;
 
+        case 4:
+            ADCON0bits.CHS3 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 0;
+            break;
 
+        case 5:
+            ADCON0bits.CHS3 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 1;
+            break;
 
-void I2C_Master_Write(unsigned d);
+        case 6:
+            ADCON0bits.CHS3 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS0 = 0;
+            break;
 
+        case 7:
+            ADCON0bits.CHS3 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS0 = 1;
+            break;
 
+        case 8:
+            ADCON0bits.CHS3 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 0;
+            break;
 
+        case 9:
+            ADCON0bits.CHS3 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 0;
+            break;
 
-unsigned short I2C_Master_Read(unsigned short a);
+        case 10:
+            ADCON0bits.CHS3 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 1;
+            break;
 
+        case 11:
+            ADCON0bits.CHS3 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS0 = 1;
+            break;
 
+        case 12:
+            ADCON0bits.CHS3 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 0;
+            break;
 
-void I2C_Slave_Init(uint8_t address);
-# 11 "I2C.c" 2
+        case 13:
+            ADCON0bits.CHS3 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS0 = 1;
+            break;
 
+        case 14:
+            ADCON0bits.CHS3 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS0 = 0;
+            break;
 
+        case 15:
+            ADCON0bits.CHS3 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS0 = 1;
+            break;
 
-
-
-void I2C_Master_Init(const unsigned long c)
-{
-    SSPCON = 0b00101000;
-    SSPCON2 = 0;
-    SSPADD = ( 8000000 /(4*c))-1;
-    SSPSTAT = 0;
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
-}
-
-
-
-
-
-
-
-void I2C_Master_Wait()
-{
-    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
-}
-
-
-
-void I2C_Master_Start()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.SEN = 1;
-}
-
-
-
-void I2C_Master_RepeatedStart()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.RSEN = 1;
-}
-
-
-
-void I2C_Master_Stop()
-{
-    I2C_Master_Wait();
-    SSPCON2bits.PEN = 1;
-}
-
-
-
-
-
-void I2C_Master_Write(unsigned d)
-{
-    I2C_Master_Wait();
-    SSPBUF = d;
-}
-
-
-
-
-unsigned short I2C_Master_Read(unsigned short a)
-{
-    unsigned short temp;
-    I2C_Master_Wait();
-    SSPCON2bits.RCEN = 1;
-    I2C_Master_Wait();
-    temp = SSPBUF;
-    I2C_Master_Wait();
-    if(a == 1){
-        SSPCON2bits.ACKDT = 0;
-    }else{
-        SSPCON2bits.ACKDT = 1;
     }
-    SSPCON2bits.ACKEN = 1;
-    return temp;
-}
-
-
-
-void I2C_Slave_Init(uint8_t address)
-{
-    SSPADD = address;
-    SSPCON = 0x36;
-    SSPSTAT = 0x80;
-    SSPCON2 = 0x01;
-    TRISC3 = 1;
-    TRISC4 = 1;
-    GIE = 1;
-    PEIE = 1;
-    SSPIF = 0;
-    SSPIE = 1;
+    ADCON1 = 0;
+    ADCON0bits.GO_DONE = 1;
 }

@@ -1,48 +1,27 @@
-/* Microchip Technology Inc. and its subsidiaries.  You may use this software 
- * and any derivatives exclusively with Microchip products. 
- * 
- * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS".  NO WARRANTIES, WHETHER 
- * EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED 
- * WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A 
- * PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION 
- * WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION. 
+/*
+ * File:   I2C.c
+ * Author: Ronaldo Arnulfo Macz
  *
- * IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
- * INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
- * WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS 
- * BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE 
- * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS 
- * IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF 
- * ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *
- * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
- * TERMS. 
+ * Created on 19 de febrero de 2020, 02:35 PM
  */
 
-/* 
- * File:   
- * Author: 
- * Comments:
- * Revision history: 
- */
 
-// This is a guard condition so that contents of this file are not included
-// more than once.  
-#ifndef I2C
-#define	I2C
-
-#include <xc.h> // include processor files - each processor file is guarded.  
-#include <pic16f887.h>
+#include <xc.h>
 #include <stdint.h>
-
-#ifndef _XTAL_FREQ
+#include "I2C.h"
 #define _XTAL_FREQ 4000000
-#endif
-
 //*****************************************************************************
 // Función para inicializar I2C Maestro
 //*****************************************************************************
-void I2C_Master_Init(const unsigned long c);
+void I2C_Master_Init(const unsigned long c)
+{
+    SSPCON = 0b00101000;
+    SSPCON2 = 0;
+    SSPADD = ( _XTAL_FREQ /(4*c))-1;
+    SSPSTAT = 0;
+    TRISCbits.TRISC3 = 1;
+    TRISCbits.TRISC4 = 1;
+}
 //*****************************************************************************
 // Función de espera: mientras se esté iniciada una comunicación,
 // esté habilitado una recepción, esté habilitado una parada
@@ -50,36 +29,79 @@ void I2C_Master_Init(const unsigned long c);
 // una comunicación o se este transmitiendo, el IC2 PIC se esperará
 // antes de realizar algún trabajo
 //*****************************************************************************
-void I2C_Master_Wait(void);
+void I2C_Master_Wait()
+{
+    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
+}
 //*****************************************************************************
 // Función de inicio de la comunicación I2C PIC
 //*****************************************************************************
-void I2C_Master_Start(void);
+void I2C_Master_Start()
+{
+    I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
+    SSPCON2bits.SEN = 1;    //inicia la comunicación i2c
+}
 //*****************************************************************************
 // Función de reinicio de la comunicación I2C PIC
 //*****************************************************************************
-void I2C_Master_RepeatedStart(void);
+void I2C_Master_RepeatedStart()
+{
+    I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
+    SSPCON2bits.RSEN = 1;   //reinicia la comunicación i2c
+}
 //*****************************************************************************
 // Función de parada de la comunicación I2C PIC
 //*****************************************************************************
-void I2C_Master_Stop(void);
+void I2C_Master_Stop()
+{
+    I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
+    SSPCON2bits.PEN = 1;    //detener la comunicación i2c
+}
 //*****************************************************************************
 //Función de transmisión de datos del maestro al esclavo
 //esta función devolverá un 0 si el esclavo a recibido
 //el dato
 //*****************************************************************************
-void I2C_Master_Write(unsigned d);
+void I2C_Master_Write(unsigned d)
+{
+    I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
+    SSPBUF = d;             
+}
 //*****************************************************************************
 //Función de recepción de datos enviados por el esclavo al maestro
 //esta función es para leer los datos que están en el esclavo
 //*****************************************************************************
-unsigned short I2C_Master_Read(unsigned short a);
+unsigned short I2C_Master_Read(unsigned short a)
+{
+    unsigned short temp;
+    I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
+    SSPCON2bits.RCEN = 1;
+    I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
+    temp = SSPBUF;
+    I2C_Master_Wait();      //espera que se cumplan las condiciones adecuadas
+    if(a == 1){
+        SSPCON2bits.ACKDT = 0;
+    }else{
+        SSPCON2bits.ACKDT = 1;
+    }
+    SSPCON2bits.ACKEN = 1;          // Iniciar sequencia de Acknowledge
+    return temp;                    // Regresar valor del dato leído
+}
 //*****************************************************************************
 // Función para inicializar I2C Esclavo
 //*****************************************************************************
-void I2C_Slave_Init(uint8_t address);
+void I2C_Slave_Init(uint8_t address)
+{ 
+    SSPADD = address;
+    SSPCON = 0x36;      // 0b00110110
+    SSPSTAT = 0x80;     // 0b10000000
+    SSPCON2 = 0x01;     // 0b00000001
+    TRISC3 = 1;
+    TRISC4 = 1;
+    GIE = 1;
+    PEIE = 1;
+    SSPIF = 0;
+    SSPIE = 1;
+}
 //*****************************************************************************
-#endif	/* __I2C_H */
-
-
-
+    
