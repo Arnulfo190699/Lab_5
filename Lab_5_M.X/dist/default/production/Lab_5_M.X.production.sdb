@@ -133,6 +133,8 @@
 [v _dpowers dpowers `DC[5]ui  1 s 10 dpowers ]
 "40 C:\Users\MAX5\Documents\GitHub\Lab_5\Lab_5_M.X\Master.c
 [v _VAL_1 VAL_1 `uc  1 e 1 0 ]
+"41
+[v _VAL_2 VAL_2 `uc  1 e 1 0 ]
 "42
 [v _ENT_1 ENT_1 `uc  1 e 1 0 ]
 "43
@@ -142,7 +144,7 @@
 "47
 [v _main main `(v  1 e 1 0 ]
 {
-"101
+"116
 } 0
 "9 C:\Users\MAX5\Documents\GitHub\Lab_5\Lab_5_M.X\LCD.c
 [v _initLCD initLCD `(v  1 e 1 0 ]

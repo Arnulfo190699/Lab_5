@@ -2760,6 +2760,12 @@ void main(void) {
         I2C_Master_Stop();
         _delay((unsigned long)((10)*(4000000/4000.0)));
 
+        I2C_Master_Start();
+        I2C_Master_Write(0x61);
+        VAL_2 = I2C_Master_Read(0);
+        I2C_Master_Stop();
+        _delay((unsigned long)((10)*(4000000/4000.0)));
+
         VAL_1 = VAL_1 * 5/255;
         ENT_1 = VAL_1;
         DEC_2 = (VAL_1 - ENT_1)*100;
@@ -2776,6 +2782,15 @@ void main(void) {
             Lcd_Write_Int(DEC_1);
         }
         Lcd_Write_Char('V');
+
+        if(VAL_2 < 10){
+            Lcd_Set_Cursor(8,2);
+            Lcd_Write_String("0");
+            Lcd_Write_Int(VAL_2);
+        }else{
+            Lcd_Set_Cursor(8,2);
+            Lcd_Write_Int(VAL_2);
+        }
 
     }
 

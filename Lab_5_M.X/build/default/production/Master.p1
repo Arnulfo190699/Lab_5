@@ -436,62 +436,107 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Master.c: 80:         _delay((unsigned long)((10)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "82
-[; ;Master.c: 82:         VAL_1 = VAL_1 * 5/255;
-[e = _VAL_1 -> / * -> _VAL_1 `i -> 5 `i -> 255 `i `uc ]
+[; ;Master.c: 82:         I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
 "83
-[; ;Master.c: 83:         ENT_1 = VAL_1;
-[e = _ENT_1 _VAL_1 ]
+[; ;Master.c: 83:         I2C_Master_Write(0x61);
+[e ( _I2C_Master_Write (1 -> -> 97 `i `ui ]
 "84
-[; ;Master.c: 84:         DEC_2 = (VAL_1 - ENT_1)*100;
-[e = _DEC_2 -> * - -> _VAL_1 `i -> _ENT_1 `i -> 100 `i `uc ]
+[; ;Master.c: 84:         VAL_2 = I2C_Master_Read(0);
+[e = _VAL_2 -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
 "85
-[; ;Master.c: 85:         DEC_1= DEC_2;
-[e = _DEC_1 _DEC_2 ]
+[; ;Master.c: 85:         I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"86
+[; ;Master.c: 86:         _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "88
-[; ;Master.c: 88:         Lcd_Set_Cursor(1,2);
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 2 `i `uc ]
+[; ;Master.c: 88:         VAL_1 = VAL_1 * 5/255;
+[e = _VAL_1 -> / * -> _VAL_1 `i -> 5 `i -> 255 `i `uc ]
 "89
-[; ;Master.c: 89:         Lcd_Write_Int(ENT_1);
-[e ( _Lcd_Write_Int (1 _ENT_1 ]
+[; ;Master.c: 89:         ENT_1 = VAL_1;
+[e = _ENT_1 _VAL_1 ]
 "90
-[; ;Master.c: 90:         Lcd_Write_Char('.');
-[e ( _Lcd_Write_Char (1 -> -> 46 `ui `uc ]
+[; ;Master.c: 90:         DEC_2 = (VAL_1 - ENT_1)*100;
+[e = _DEC_2 -> * - -> _VAL_1 `i -> _ENT_1 `i -> 100 `i `uc ]
 "91
-[; ;Master.c: 91:         if (DEC_1 >= 10){
+[; ;Master.c: 91:         DEC_1= DEC_2;
+[e = _DEC_1 _DEC_2 ]
+"94
+[; ;Master.c: 94:         Lcd_Set_Cursor(1,2);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 2 `i `uc ]
+"95
+[; ;Master.c: 95:         Lcd_Write_Int(ENT_1);
+[e ( _Lcd_Write_Int (1 _ENT_1 ]
+"96
+[; ;Master.c: 96:         Lcd_Write_Char('.');
+[e ( _Lcd_Write_Char (1 -> -> 46 `ui `uc ]
+"97
+[; ;Master.c: 97:         if (DEC_1 >= 10){
 [e $ ! >= -> _DEC_1 `i -> 10 `i 142  ]
 {
-"92
-[; ;Master.c: 92:             Lcd_Write_Int(DEC_1);
+"98
+[; ;Master.c: 98:             Lcd_Write_Int(DEC_1);
 [e ( _Lcd_Write_Int (1 _DEC_1 ]
-"93
-[; ;Master.c: 93:         }else{
+"99
+[; ;Master.c: 99:         }else{
 }
 [e $U 143  ]
 [e :U 142 ]
 {
-"94
-[; ;Master.c: 94:             Lcd_Write_Char('0');
+"100
+[; ;Master.c: 100:             Lcd_Write_Char('0');
 [e ( _Lcd_Write_Char (1 -> -> 48 `ui `uc ]
-"95
-[; ;Master.c: 95:             Lcd_Write_Int(DEC_1);
+"101
+[; ;Master.c: 101:             Lcd_Write_Int(DEC_1);
 [e ( _Lcd_Write_Int (1 _DEC_1 ]
-"96
-[; ;Master.c: 96:         }
+"102
+[; ;Master.c: 102:         }
 }
 [e :U 143 ]
-"97
-[; ;Master.c: 97:         Lcd_Write_Char('V');
+"103
+[; ;Master.c: 103:         Lcd_Write_Char('V');
 [e ( _Lcd_Write_Char (1 -> -> 86 `ui `uc ]
-"99
-[; ;Master.c: 99:     }
+"105
+[; ;Master.c: 105:         if(VAL_2 < 10){
+[e $ ! < -> _VAL_2 `i -> 10 `i 144  ]
+{
+"106
+[; ;Master.c: 106:             Lcd_Set_Cursor(8,2);
+[e ( _Lcd_Set_Cursor (2 , -> -> 8 `i `uc -> -> 2 `i `uc ]
+"107
+[; ;Master.c: 107:             Lcd_Write_String("0");
+[e ( _Lcd_Write_String (1 :s 4C ]
+"108
+[; ;Master.c: 108:             Lcd_Write_Int(VAL_2);
+[e ( _Lcd_Write_Int (1 _VAL_2 ]
+"109
+[; ;Master.c: 109:         }else{
+}
+[e $U 145  ]
+[e :U 144 ]
+{
+"110
+[; ;Master.c: 110:             Lcd_Set_Cursor(8,2);
+[e ( _Lcd_Set_Cursor (2 , -> -> 8 `i `uc -> -> 2 `i `uc ]
+"111
+[; ;Master.c: 111:             Lcd_Write_Int(VAL_2);
+[e ( _Lcd_Write_Int (1 _VAL_2 ]
+"112
+[; ;Master.c: 112:         }
+}
+[e :U 145 ]
+"114
+[; ;Master.c: 114:     }
 }
 [e :U 139 ]
 [e $U 140  ]
 [e :U 141 ]
-"101
-[; ;Master.c: 101: }
+"116
+[; ;Master.c: 116: }
 [e :UE 138 ]
 }
 [a 3C 83 51 0 ]
 [a 2C 83 50 0 ]
 [a 1C 83 49 0 ]
+[a 4C 48 0 ]

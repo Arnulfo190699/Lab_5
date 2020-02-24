@@ -26,7 +26,7 @@ bssBANK0 BANK0 1 20 20 15 1
 strings STRING 0 2CE 2CE 9 2
 clrtext CODE 0 2D7 2D7 8 2
 bssCOMMON COMMON 1 77 77 3 1
-$C:\Users\MAX5\AppData\Local\Temp\s10qk.o
+$C:\Users\MAX5\AppData\Local\Temp\s8ds.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 0 2007 2007 2 2
@@ -76,19 +76,19 @@ STRING 2DF-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Lab_5_S1.X.production.o
-F cinit CODE >995:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-F cinit CODE >998:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-F cinit CODE >1060:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-10 cinit CODE >1061:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-11 cinit CODE >1062:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-12 cinit CODE >1065:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-13 cinit CODE >1066:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-14 cinit CODE >1067:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-15 cinit CODE >1068:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-16 cinit CODE >1069:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-1B cinit CODE >1075:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-1B cinit CODE >1077:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-1C cinit CODE >1078:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
+F cinit CODE >995:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+F cinit CODE >998:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+F cinit CODE >1060:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+10 cinit CODE >1061:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+11 cinit CODE >1062:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+12 cinit CODE >1065:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+13 cinit CODE >1066:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+14 cinit CODE >1067:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+15 cinit CODE >1068:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+16 cinit CODE >1069:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+1B cinit CODE >1075:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+1B cinit CODE >1077:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+1C cinit CODE >1078:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
 4 intentry CODE >64:C:\Users\MAX5\Documents\GitHub\Lab_5\Lab_5_S1.X\Slave1.c
 1F5 text5 CODE >64:C:\Users\MAX5\Documents\GitHub\Lab_5\Lab_5_S1.X\Slave1.c
 1F5 text5 CODE >66:C:\Users\MAX5\Documents\GitHub\Lab_5\Lab_5_S1.X\Slave1.c
@@ -305,16 +305,16 @@ DA text1 CODE >44:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\com
 29D maintext CODE >134:C:\Users\MAX5\Documents\GitHub\Lab_5\Lab_5_S1.X\Slave1.c
 2AE maintext CODE >135:C:\Users\MAX5\Documents\GitHub\Lab_5\Lab_5_S1.X\Slave1.c
 2AF maintext CODE >136:C:\Users\MAX5\Documents\GitHub\Lab_5\Lab_5_S1.X\Slave1.c
-2D7 clrtext CODE >1047:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2D7 clrtext CODE >1048:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2D8 clrtext CODE >1049:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2D8 clrtext CODE >1050:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2D9 clrtext CODE >1051:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2DA clrtext CODE >1052:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2DB clrtext CODE >1053:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2DC clrtext CODE >1054:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2DD clrtext CODE >1055:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
-2DE clrtext CODE >1056:C:\Users\MAX5\AppData\Local\Temp\s10qk.s
+2D7 clrtext CODE >1047:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2D7 clrtext CODE >1048:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2D8 clrtext CODE >1049:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2D8 clrtext CODE >1050:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2D9 clrtext CODE >1051:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2DA clrtext CODE >1052:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2DB clrtext CODE >1053:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2DC clrtext CODE >1054:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2DD clrtext CODE >1055:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
+2DE clrtext CODE >1056:C:\Users\MAX5\AppData\Local\Temp\s8ds.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -338,21 +338,21 @@ __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 _BF 4A0 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _PEIE 5E 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\MAX5\AppData\Local\Temp\s10qk.o
+___sp 0 0 STACK 2 stack C:\Users\MAX5\AppData\Local\Temp\s8ds.o
 _main 4BA 0 CODE 0 maintext dist/default/production\Lab_5_S1.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
-start 18 0 CODE 0 init C:\Users\MAX5\AppData\Local\Temp\s10qk.o
+start 18 0 CODE 0 init C:\Users\MAX5\AppData\Local\Temp\s8ds.o
 __size_of___fltol 0 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 __CFG_BOREN$OFF 0 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s10qk.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s10qk.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s10qk.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s10qk.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s10qk.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s10qk.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s8ds.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s8ds.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s8ds.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s8ds.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s8ds.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\MAX5\AppData\Local\Temp\s8ds.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -363,8 +363,8 @@ _ANSELH 189 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 _SSPCONbits 14 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
 __end_of___fltol 3EA 0 CODE 0 text2 dist/default/production\Lab_5_S1.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\MAX5\AppData\Local\Temp\s10qk.o
-___stacklo 0 0 ABS 0 - C:\Users\MAX5\AppData\Local\Temp\s10qk.o
+___stackhi 0 0 ABS 0 - C:\Users\MAX5\AppData\Local\Temp\s8ds.o
+___stacklo 0 0 ABS 0 - C:\Users\MAX5\AppData\Local\Temp\s8ds.o
 _I2C_Slave_Init 568 0 CODE 0 text3 dist/default/production\Lab_5_S1.X.production.o
 __CFG_FCMEN$OFF 0 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 __CFG_MCLRE$OFF 0 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
@@ -377,7 +377,7 @@ _SSPBUF 13 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 _SSPCON 14 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
 _TRISC4 43C 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\MAX5\AppData\Local\Temp\s10qk.o
+___int_sp 0 0 STACK 2 stack C:\Users\MAX5\AppData\Local\Temp\s8ds.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -435,7 +435,7 @@ ___xxtofl 3E 0 CODE 0 text1 dist/default/production\Lab_5_S1.X.production.o
 __end_of_isr 4BA 0 CODE 0 text5 dist/default/production\Lab_5_S1.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 __stringtab 59C 0 STRING 0 strings dist/default/production\Lab_5_S1.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\MAX5\AppData\Local\Temp\s10qk.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\MAX5\AppData\Local\Temp\s8ds.o
 __end_of___xxtofl 1B6 0 CODE 0 text1 dist/default/production\Lab_5_S1.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Lab_5_S1.X.production.o

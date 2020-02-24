@@ -79,6 +79,12 @@ void main(void) {
         I2C_Master_Stop();
         __delay_ms(10);
         
+        I2C_Master_Start();
+        I2C_Master_Write(0x61);
+        VAL_2 = I2C_Master_Read(0);
+        I2C_Master_Stop();
+        __delay_ms(10);
+        
         VAL_1 = VAL_1 * 5/255; //Convertir el dato recibido por el adc a enteros para facilitar mostrar en la LCD
         ENT_1 = VAL_1;
         DEC_2 = (VAL_1 - ENT_1)*100;
@@ -88,13 +94,23 @@ void main(void) {
         Lcd_Set_Cursor(1,2);
         Lcd_Write_Int(ENT_1);
         Lcd_Write_Char('.');
-        if (DEC_1 >= 10){ //Mostrar siempre 2 decimales
+        if (DEC_1 >= 10){
             Lcd_Write_Int(DEC_1);
         }else{
             Lcd_Write_Char('0');
             Lcd_Write_Int(DEC_1);
         }
         Lcd_Write_Char('V');
+        
+        
+        if(VAL_2 < 10){
+            Lcd_Set_Cursor(8,2);
+            Lcd_Write_String("0");
+            Lcd_Write_Int(VAL_2);
+        }else{
+            Lcd_Set_Cursor(8,2);
+            Lcd_Write_Int(VAL_2);
+        }        
         
     }
     
