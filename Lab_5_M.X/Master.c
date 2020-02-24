@@ -45,9 +45,9 @@ uint8_t DEC_2 = 0;
 
 
 void main(void) {
-///////////////////////CONFIGURACION DE PUERTO ////////////////////////////
+///////////////////////CONFIGURACION DE PUERTOS ////////////////////////////
     
-    TRISA = 0b11111111;
+    TRISA = 0b11111111;                 //PUERTO A COMO SALIDA DIGITAL
     TRISB = 0;
     TRISC = 0;
     TRISD = 0;
@@ -59,12 +59,13 @@ void main(void) {
     PORTC = 0;
     PORTD = 0;
     
-    /////////////////////// LIBRERIA DE LCD //////////////////////////////////////////////////
+/////////////////////// LIBRERIA DE LCD //////////////////////////////////////////////////
     initLCD(); 
     Lcd_Clear();
-    I2C_Master_Init(100000); //Iniciar la función de master a una frecuencia de 100kHz
-    Lcd_Clear();//Limpiar LCD
-    Lcd_Set_Cursor(1,1);
+    I2C_Master_Init(100000);            //DEFINIMOS LA FRECUENCIA DE LA LCD A 1KHZ
+    Lcd_Clear();                        //SE LIMPIA LA LCD
+    
+    Lcd_Set_Cursor(1,1);                //SE DEFINEN LOS VALORES ESTATICOS DE LA LCD
     Lcd_Write_String ("S1");
     Lcd_Set_Cursor(7,1);
     Lcd_Write_String ("S2");
@@ -73,25 +74,26 @@ void main(void) {
     
     while(1){
    
+     
         I2C_Master_Start();
-        I2C_Master_Write(0x51);
-        VAL_1 = I2C_Master_Read(0);
+        I2C_Master_Write(0x51);         //LEE LA DIRECCIÒN DEL SLAVE_1
+        VAL_1 = I2C_Master_Read(0);     //GUARDA EL VALOR QUE LEE DEL SLAVE_1 
         I2C_Master_Stop();
         __delay_ms(10);
         
-        I2C_Master_Start();
-        I2C_Master_Write(0x61);
-        VAL_2 = I2C_Master_Read(0);
+        I2C_Master_Start();            
+        I2C_Master_Write(0x61);          //LEE LA DIRECCIÒN DEL SLAVE_2
+        VAL_2 = I2C_Master_Read(0);      //GUARDA EL VALOR QUE LEE DEL SLAVE_2
         I2C_Master_Stop();
         __delay_ms(10);
         
-        VAL_1 = VAL_1 * 5/255; //Convertir el dato recibido por el adc a enteros para facilitar mostrar en la LCD
+        VAL_1 = VAL_1 * 5/255;          //CONVIERTE EL VALOR DEL POTENCIOMETRO A UN RANGO DE 0 Y 5 VOLTEOS
         ENT_1 = VAL_1;
         DEC_2 = (VAL_1 - ENT_1)*100;
         DEC_1= DEC_2;
          
          
-        Lcd_Set_Cursor(1,2);
+        Lcd_Set_Cursor(1,2);            //MUESTRA EL VALOR DEL POTENCIOMETRO EN LA LCD
         Lcd_Write_Int(ENT_1);
         Lcd_Write_Char('.');
         if (DEC_1 >= 10){
@@ -100,15 +102,14 @@ void main(void) {
             Lcd_Write_Char('0');
             Lcd_Write_Int(DEC_1);
         }
-        Lcd_Write_Char('V');
         
         
-        if(VAL_2 < 10){
-            Lcd_Set_Cursor(8,2);
+        if(VAL_2 < 10){                 //MUESTRA EL VALOR DEL CONTADOR EN LA LCD
+            Lcd_Set_Cursor(7,2);
             Lcd_Write_String("0");
             Lcd_Write_Int(VAL_2);
         }else{
-            Lcd_Set_Cursor(8,2);
+            Lcd_Set_Cursor(7,2);
             Lcd_Write_Int(VAL_2);
         }        
         

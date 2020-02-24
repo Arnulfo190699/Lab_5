@@ -2705,11 +2705,9 @@ void main(void) {
 
 
     TRISA = 0;
-    TRISB = 0;
+    TRISB = 0b00000011;
     TRISD = 0;
-    TRISBbits.TRISB0 = 1;
-    TRISBbits.TRISB1 = 1;
-    TRISBbits.TRISB5 = 1;
+
     PORTA = 0;
     PORTB = 0;
     PORTD = 0;
@@ -2739,7 +2737,6 @@ void main(void) {
 
     }
 }
-
 
 
 

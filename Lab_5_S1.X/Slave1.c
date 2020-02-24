@@ -53,17 +53,47 @@ float ADC_2 = 0;
 float DECIMAL1_1 = 0;
 float DECIMAL2_2 = 0;
 
-//*****************************************************************************
-// Definición de funciones para que se puedan colocar después del main de lo 
-// contrario hay que colocarlos todas las funciones antes del main
-//*****************************************************************************
-void setup(void);
+void main(void) {
+    
+    //////////////////CONFIGURACION DE PUERTOS////////////////////////////////
+    
+    ANSEL = 0b00000001;             //ANS0 COMO ENTRADA ANALOGICA
+    ANSELH = 0;
+    
+    TRISA = 0b00000001;             //A0 COMO ENTRADA
+    TRISB = 0;
+    TRISD = 0;
+    
+    PORTA = 0;
+    PORTB = 0;
+    PORTD = 0;
+    
+    I2C_Slave_Init(0x50);           //SE DEFINE ESTE SLAVE CON LA DIRECCION 0X50
+    
+    //*************************************************************************
+    // Loop infinito
+    //*************************************************************************
+    
+    while(1){
+        ADCCONFIG(0);               // SE LLAMA A LA CONFIGURACION DEL ADC Y DEFINIENDO EL 
+        if(bandera){                // ANS0 COMO ENTRADA
+            ADC_1 = ADRESH;
+            PORTB = ADC_1;
+            bandera = 0;
+            ADCON0bits.GO_DONE = 1;
+        }
+    
+    }
+    return;
+}
+
+
 //*****************************************************************************
 // Código de Interrupción 
 //*****************************************************************************
 void __interrupt() isr(void){
     
-    if(ADCON0bits.GO_DONE == 0){
+    if(ADCON0bits.GO_DONE == 0){        //INTERRUPCION DEL ADC
         bandera = 1;
         PIR1bits.ADIF = 0;
         }  
@@ -100,45 +130,8 @@ void __interrupt() isr(void){
         }
        
         PIR1bits.SSPIF = 0;    
-        
 
     }        
+}
 
-    
- 
-    
-}
-//*****************************************************************************
-// Main
-//*****************************************************************************
-void main(void) {
-    ANSEL = 0b00000001;
-    ANSELH = 0;
-    
-    TRISA = 0b00000001;
-    TRISB = 0;
-    TRISD = 0;
-    
-    PORTA = 0;
-    PORTB = 0;
-    PORTD = 0;
-    I2C_Slave_Init(0x50);   
-    
-    //*************************************************************************
-    // Loop infinito
-    //*************************************************************************
-    while(1){
-        ADCCONFIG(0);
-        if(bandera){ 
-            ADC_1 = ADRESH;
-            PORTB = ADC_1;
-            bandera = 0;
-            ADCON0bits.GO_DONE = 1;
-        }
-    
-    }
-    return;
-}
-//*****************************************************************************
-// Función de Inicialización
-//*****************************************************************************
+

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                               Sun Feb 23 22:40:46 2020
+                                                                                               Mon Feb 24 09:45:43 2020
 
 Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
      1                           	processor	16F887
@@ -321,647 +321,644 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    307  0094                     _SSPSTATbits	set	148
    308  0096                     _IOCBbits	set	150
    309  0096                     _IOCB	set	150
-   310  0086                     _TRISBbits	set	134
-   311  0088                     _TRISD	set	136
-   312  0086                     _TRISB	set	134
-   313  0085                     _TRISA	set	133
-   314  0463                     _SSPIE	set	1123
-   315  043C                     _TRISC4	set	1084
-   316  043B                     _TRISC3	set	1083
-   317  04A0                     _BF	set	1184
-   318  0189                     _ANSELH	set	393
-   319  0188                     _ANSEL	set	392
-   320                           
-   321                           ; #config settings
-   322  0000                     
-   323                           	psect	cinit
-   324  000F                     start_initialization:	
-   325  000F                     __initialization:	
-   326                           
-   327                           ; Clear objects allocated to COMMON
-   328  000F  01F0               	clrf	__pbssCOMMON& (0+127)
-   329  0010  01F1               	clrf	(__pbssCOMMON+1)& (0+127)
-   330  0011  01F2               	clrf	(__pbssCOMMON+2)& (0+127)
-   331  0012  01F3               	clrf	(__pbssCOMMON+3)& (0+127)
-   332  0013  01F4               	clrf	(__pbssCOMMON+4)& (0+127)
-   333  0014                     end_of_initialization:	
-   334                           ;End of C runtime variable initialization code
-   335                           
-   336  0014                     __end_of__initialization:	
-   337  0014  0183               	clrf	3
-   338  0015  120A  118A  28AA   	ljmp	_main	;jump to C main() function
-   339                           
-   340                           	psect	bssCOMMON
-   341  0070                     __pbssCOMMON:	
-   342  0070                     _DECENAS:	
-   343  0070                     	ds	1
-   344  0071                     _UNIDADES:	
-   345  0071                     	ds	1
-   346  0072                     _CONTADOR:	
-   347  0072                     	ds	1
-   348  0073                     _dato:	
-   349  0073                     	ds	1
-   350  0074                     _z:	
-   351  0074                     	ds	1
-   352                           
-   353                           	psect	cstackCOMMON
-   354  0075                     __pcstackCOMMON:	
-   355  0075                     ?_I2C_Slave_Init:	
-   356  0075                     ?_main:	
-   357                           ; 1 bytes @ 0x0
-   358                           
-   359  0075                     ?_isr:	
-   360                           ; 1 bytes @ 0x0
-   361                           
-   362  0075                     ??_isr:	
-   363                           ; 1 bytes @ 0x0
+   310  0088                     _TRISD	set	136
+   311  0086                     _TRISB	set	134
+   312  0085                     _TRISA	set	133
+   313  0463                     _SSPIE	set	1123
+   314  043C                     _TRISC4	set	1084
+   315  043B                     _TRISC3	set	1083
+   316  04A0                     _BF	set	1184
+   317  0189                     _ANSELH	set	393
+   318  0188                     _ANSEL	set	392
+   319                           
+   320                           ; #config settings
+   321  0000                     
+   322                           	psect	cinit
+   323  000F                     start_initialization:	
+   324  000F                     __initialization:	
+   325                           
+   326                           ; Clear objects allocated to COMMON
+   327  000F  01F0               	clrf	__pbssCOMMON& (0+127)
+   328  0010  01F1               	clrf	(__pbssCOMMON+1)& (0+127)
+   329  0011  01F2               	clrf	(__pbssCOMMON+2)& (0+127)
+   330  0012  01F3               	clrf	(__pbssCOMMON+3)& (0+127)
+   331  0013  01F4               	clrf	(__pbssCOMMON+4)& (0+127)
+   332  0014                     end_of_initialization:	
+   333                           ;End of C runtime variable initialization code
+   334                           
+   335  0014                     __end_of__initialization:	
+   336  0014  0183               	clrf	3
+   337  0015  120A  118A  28AA   	ljmp	_main	;jump to C main() function
+   338                           
+   339                           	psect	bssCOMMON
+   340  0070                     __pbssCOMMON:	
+   341  0070                     _DECENAS:	
+   342  0070                     	ds	1
+   343  0071                     _UNIDADES:	
+   344  0071                     	ds	1
+   345  0072                     _CONTADOR:	
+   346  0072                     	ds	1
+   347  0073                     _dato:	
+   348  0073                     	ds	1
+   349  0074                     _z:	
+   350  0074                     	ds	1
+   351                           
+   352                           	psect	cstackCOMMON
+   353  0075                     __pcstackCOMMON:	
+   354  0075                     ?_I2C_Slave_Init:	
+   355  0075                     ?_main:	
+   356                           ; 1 bytes @ 0x0
+   357                           
+   358  0075                     ?_isr:	
+   359                           ; 1 bytes @ 0x0
+   360                           
+   361  0075                     ??_isr:	
+   362                           ; 1 bytes @ 0x0
+   363                           
    364                           
-   365                           
-   366                           ; 1 bytes @ 0x0
-   367  0075                     	ds	3
-   368  0078                     ??_I2C_Slave_Init:	
-   369  0078                     I2C_Slave_Init@address:	
-   370                           ; 1 bytes @ 0x3
+   365                           ; 1 bytes @ 0x0
+   366  0075                     	ds	3
+   367  0078                     ??_I2C_Slave_Init:	
+   368  0078                     I2C_Slave_Init@address:	
+   369                           ; 1 bytes @ 0x3
+   370                           
    371                           
-   372                           
-   373                           ; 1 bytes @ 0x3
-   374  0078                     	ds	1
-   375  0079                     ??_main:	
-   376                           
-   377                           	psect	maintext
-   378  00AA                     __pmaintext:	
-   379                           ; 1 bytes @ 0x4
-   380 ;;
-   381 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   382 ;;
-   383 ;; *************** function _main *****************
-   384 ;; Defined at:
-   385 ;;		line 44 in file "Lab_5_S2.c"
-   386 ;; Parameters:    Size  Location     Type
-   387 ;;		None
-   388 ;; Auto vars:     Size  Location     Type
-   389 ;;		None
-   390 ;; Return value:  Size  Location     Type
-   391 ;;                  1    wreg      void 
-   392 ;; Registers used:
-   393 ;;		wreg, status,2, status,0, pclath, cstack
-   394 ;; Tracked objects:
-   395 ;;		On entry : B00/0
-   396 ;;		On exit  : 0/0
-   397 ;;		Unchanged: 0/0
-   398 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   399 ;;      Params:         0       0       0       0       0
-   400 ;;      Locals:         0       0       0       0       0
-   401 ;;      Temps:          0       0       0       0       0
-   402 ;;      Totals:         0       0       0       0       0
-   403 ;;Total ram usage:        0 bytes
-   404 ;; Hardware stack levels required when called:    2
-   405 ;; This function calls:
-   406 ;;		_I2C_Slave_Init
-   407 ;; This function is called by:
-   408 ;;		Startup code after reset
-   409 ;; This function uses a non-reentrant model
-   410 ;;
+   372                           ; 1 bytes @ 0x3
+   373  0078                     	ds	1
+   374  0079                     ??_main:	
+   375                           
+   376                           	psect	maintext
+   377  00AA                     __pmaintext:	
+   378                           ; 1 bytes @ 0x4
+   379 ;;
+   380 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   381 ;;
+   382 ;; *************** function _main *****************
+   383 ;; Defined at:
+   384 ;;		line 44 in file "Lab_5_S2.c"
+   385 ;; Parameters:    Size  Location     Type
+   386 ;;		None
+   387 ;; Auto vars:     Size  Location     Type
+   388 ;;		None
+   389 ;; Return value:  Size  Location     Type
+   390 ;;                  1    wreg      void 
+   391 ;; Registers used:
+   392 ;;		wreg, status,2, status,0, pclath, cstack
+   393 ;; Tracked objects:
+   394 ;;		On entry : B00/0
+   395 ;;		On exit  : 0/0
+   396 ;;		Unchanged: 0/0
+   397 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   398 ;;      Params:         0       0       0       0       0
+   399 ;;      Locals:         0       0       0       0       0
+   400 ;;      Temps:          0       0       0       0       0
+   401 ;;      Totals:         0       0       0       0       0
+   402 ;;Total ram usage:        0 bytes
+   403 ;; Hardware stack levels required when called:    2
+   404 ;; This function calls:
+   405 ;;		_I2C_Slave_Init
+   406 ;; This function is called by:
+   407 ;;		Startup code after reset
+   408 ;; This function uses a non-reentrant model
+   409 ;;
+   410                           
    411                           
-   412                           
-   413                           ;psect for function _main
-   414  00AA                     _main:	
-   415  00AA                     l756:	
-   416                           ;incstack = 0
-   417                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   412                           ;psect for function _main
+   413  00AA                     _main:	
+   414  00AA                     l754:	
+   415                           ;incstack = 0
+   416                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   417                           
    418                           
-   419                           
-   420                           ;Lab_5_S2.c: 47:     TRISA = 0;
-   421  00AA  1683               	bsf	3,5	;RP0=1, select bank1
-   422  00AB  1303               	bcf	3,6	;RP1=0, select bank1
-   423  00AC  0185               	clrf	5	;volatile
+   419                           ;Lab_5_S2.c: 47:     TRISA = 0;
+   420  00AA  1683               	bsf	3,5	;RP0=1, select bank1
+   421  00AB  1303               	bcf	3,6	;RP1=0, select bank1
+   422  00AC  0185               	clrf	5	;volatile
+   423  00AD                     l756:	
    424                           
-   425                           ;Lab_5_S2.c: 48:     TRISB = 0;
-   426  00AD  0186               	clrf	6	;volatile
-   427                           
-   428                           ;Lab_5_S2.c: 49:     TRISD = 0;
-   429  00AE  0188               	clrf	8	;volatile
-   430  00AF                     l758:	
-   431                           
-   432                           ;Lab_5_S2.c: 50:     TRISBbits.TRISB0 = 1;
-   433  00AF  1406               	bsf	6,0	;volatile
-   434  00B0                     l760:	
-   435                           
-   436                           ;Lab_5_S2.c: 51:     TRISBbits.TRISB1 = 1;
-   437  00B0  1486               	bsf	6,1	;volatile
-   438  00B1                     l762:	
+   425                           ;Lab_5_S2.c: 48:     TRISB = 0b00000011;
+   426  00AD  3003               	movlw	3
+   427  00AE  0086               	movwf	6	;volatile
+   428  00AF                     l758:	
+   429                           
+   430                           ;Lab_5_S2.c: 49:     TRISD = 0;
+   431  00AF  0188               	clrf	8	;volatile
+   432  00B0                     l760:	
+   433                           
+   434                           ;Lab_5_S2.c: 51:     PORTA = 0;
+   435  00B0  1283               	bcf	3,5	;RP0=0, select bank0
+   436  00B1  1303               	bcf	3,6	;RP1=0, select bank0
+   437  00B2  0185               	clrf	5	;volatile
+   438  00B3                     l762:	
    439                           
-   440                           ;Lab_5_S2.c: 52:     TRISBbits.TRISB5 = 1;
-   441  00B1  1686               	bsf	6,5	;volatile
-   442                           
-   443                           ;Lab_5_S2.c: 53:     PORTA = 0;
-   444  00B2  1283               	bcf	3,5	;RP0=0, select bank0
-   445  00B3  1303               	bcf	3,6	;RP1=0, select bank0
-   446  00B4  0185               	clrf	5	;volatile
+   440                           ;Lab_5_S2.c: 52:     PORTB = 0;
+   441  00B3  0186               	clrf	6	;volatile
+   442  00B4                     l764:	
+   443                           
+   444                           ;Lab_5_S2.c: 53:     PORTD = 0;
+   445  00B4  0188               	clrf	8	;volatile
+   446  00B5                     l766:	
    447                           
-   448                           ;Lab_5_S2.c: 54:     PORTB = 0;
-   449  00B5  0186               	clrf	6	;volatile
-   450                           
-   451                           ;Lab_5_S2.c: 55:     PORTD = 0;
-   452  00B6  0188               	clrf	8	;volatile
+   448                           ;Lab_5_S2.c: 55:     ANSEL = 0;
+   449  00B5  1683               	bsf	3,5	;RP0=1, select bank3
+   450  00B6  1703               	bsf	3,6	;RP1=1, select bank3
+   451  00B7  0188               	clrf	8	;volatile
+   452  00B8                     l768:	
    453                           
-   454                           ;Lab_5_S2.c: 57:     ANSEL = 0;
-   455  00B7  1683               	bsf	3,5	;RP0=1, select bank3
-   456  00B8  1703               	bsf	3,6	;RP1=1, select bank3
-   457  00B9  0188               	clrf	8	;volatile
-   458                           
-   459                           ;Lab_5_S2.c: 58:     ANSELH = 0;
-   460  00BA  0189               	clrf	9	;volatile
+   454                           ;Lab_5_S2.c: 56:     ANSELH = 0;
+   455  00B8  0189               	clrf	9	;volatile
+   456  00B9                     l770:	
+   457                           
+   458                           ;Lab_5_S2.c: 59:     INTCON = 0;
+   459  00B9  018B               	clrf	11	;volatile
+   460  00BA                     l772:	
    461                           
-   462                           ;Lab_5_S2.c: 61:     INTCON = 0;
-   463  00BB  018B               	clrf	11	;volatile
-   464  00BC                     l764:	
+   462                           ;Lab_5_S2.c: 60:     INTCONbits.GIE = 1;
+   463  00BA  178B               	bsf	11,7	;volatile
+   464  00BB                     l774:	
    465                           
-   466                           ;Lab_5_S2.c: 62:     INTCONbits.GIE = 1;
-   467  00BC  178B               	bsf	11,7	;volatile
-   468  00BD                     l766:	
+   466                           ;Lab_5_S2.c: 61:     INTCONbits.RBIE = 1;
+   467  00BB  158B               	bsf	11,3	;volatile
+   468  00BC                     l776:	
    469                           
-   470                           ;Lab_5_S2.c: 63:     INTCONbits.RBIE = 1;
-   471  00BD  158B               	bsf	11,3	;volatile
-   472  00BE                     l768:	
+   470                           ;Lab_5_S2.c: 62:     INTCONbits.RBIF = 0;
+   471  00BC  100B               	bcf	11,0	;volatile
+   472  00BD                     l778:	
    473                           
-   474                           ;Lab_5_S2.c: 64:     INTCONbits.RBIF = 0;
-   475  00BE  100B               	bcf	11,0	;volatile
-   476                           
-   477                           ;Lab_5_S2.c: 65:     IOCB = 0;
-   478  00BF  1683               	bsf	3,5	;RP0=1, select bank1
-   479  00C0  1303               	bcf	3,6	;RP1=0, select bank1
-   480  00C1  0196               	clrf	22	;volatile
-   481  00C2                     l770:	
-   482                           
-   483                           ;Lab_5_S2.c: 66:     IOCBbits.IOCB0 = 1;
-   484  00C2  1416               	bsf	22,0	;volatile
-   485  00C3                     l772:	
-   486                           
-   487                           ;Lab_5_S2.c: 67:     IOCBbits.IOCB1 = 1;
-   488  00C3  1496               	bsf	22,1	;volatile
-   489  00C4                     l774:	
-   490                           
-   491                           ;Lab_5_S2.c: 68:     INTCONbits.PEIE = 1;
-   492  00C4  170B               	bsf	11,6	;volatile
-   493  00C5                     l776:	
-   494                           
-   495                           ;Lab_5_S2.c: 70:     I2C_Slave_Init(0x60);
-   496  00C5  3060               	movlw	96
-   497  00C6  120A  118A  20D5  120A  118A  	fcall	_I2C_Slave_Init
-   498  00CB                     l778:	
-   499                           
-   500                           ;Lab_5_S2.c: 76:         BOTON = 0;
-   501  00CB  01F9               	clrf	_BOTON
-   502  00CC                     l780:	
-   503                           
-   504                           ;Lab_5_S2.c: 77:         PORTA = CONTADOR;
-   505  00CC  0872               	movf	_CONTADOR,w
-   506  00CD  1283               	bcf	3,5	;RP0=0, select bank0
-   507  00CE  1303               	bcf	3,6	;RP1=0, select bank0
-   508  00CF  0085               	movwf	5	;volatile
-   509  00D0                     l782:	
-   510                           
-   511                           ;Lab_5_S2.c: 78:         ADCON0bits.GO = 1;
-   512  00D0  149F               	bsf	31,1	;volatile
-   513  00D1  28CB               	goto	l778
-   514  00D2  120A  118A  280C   	ljmp	start
-   515  00D5                     __end_of_main:	
-   516                           
-   517                           	psect	text1
-   518  00D5                     __ptext1:	
-   519 ;; *************** function _I2C_Slave_Init *****************
-   520 ;; Defined at:
-   521 ;;		line 93 in file "I2C.c"
-   522 ;; Parameters:    Size  Location     Type
-   523 ;;  address         1    wreg     unsigned char 
-   524 ;; Auto vars:     Size  Location     Type
-   525 ;;  address         1    3[COMMON] unsigned char 
-   526 ;; Return value:  Size  Location     Type
-   527 ;;                  1    wreg      void 
-   528 ;; Registers used:
-   529 ;;		wreg
-   530 ;; Tracked objects:
-   531 ;;		On entry : 0/0
-   532 ;;		On exit  : 0/0
-   533 ;;		Unchanged: 0/0
-   534 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   535 ;;      Params:         0       0       0       0       0
-   536 ;;      Locals:         1       0       0       0       0
-   537 ;;      Temps:          0       0       0       0       0
-   538 ;;      Totals:         1       0       0       0       0
-   539 ;;Total ram usage:        1 bytes
-   540 ;; Hardware stack levels used:    1
-   541 ;; Hardware stack levels required when called:    1
-   542 ;; This function calls:
-   543 ;;		Nothing
-   544 ;; This function is called by:
-   545 ;;		_main
-   546 ;; This function uses a non-reentrant model
-   547 ;;
-   548                           
+   474                           ;Lab_5_S2.c: 63:     IOCB = 0;
+   475  00BD  1683               	bsf	3,5	;RP0=1, select bank1
+   476  00BE  1303               	bcf	3,6	;RP1=0, select bank1
+   477  00BF  0196               	clrf	22	;volatile
+   478  00C0                     l780:	
+   479                           
+   480                           ;Lab_5_S2.c: 64:     IOCBbits.IOCB0 = 1;
+   481  00C0  1416               	bsf	22,0	;volatile
+   482  00C1                     l782:	
+   483                           
+   484                           ;Lab_5_S2.c: 65:     IOCBbits.IOCB1 = 1;
+   485  00C1  1496               	bsf	22,1	;volatile
+   486  00C2                     l784:	
+   487                           
+   488                           ;Lab_5_S2.c: 66:     INTCONbits.PEIE = 1;
+   489  00C2  170B               	bsf	11,6	;volatile
+   490  00C3                     l786:	
+   491                           
+   492                           ;Lab_5_S2.c: 68:     I2C_Slave_Init(0x60);
+   493  00C3  3060               	movlw	96
+   494  00C4  120A  118A  20D3  120A  118A  	fcall	_I2C_Slave_Init
+   495  00C9                     l788:	
+   496                           
+   497                           ;Lab_5_S2.c: 74:         BOTON = 0;
+   498  00C9  01F9               	clrf	_BOTON
+   499  00CA                     l790:	
+   500                           
+   501                           ;Lab_5_S2.c: 75:         PORTA = CONTADOR;
+   502  00CA  0872               	movf	_CONTADOR,w
+   503  00CB  1283               	bcf	3,5	;RP0=0, select bank0
+   504  00CC  1303               	bcf	3,6	;RP1=0, select bank0
+   505  00CD  0085               	movwf	5	;volatile
+   506  00CE                     l792:	
+   507                           
+   508                           ;Lab_5_S2.c: 76:         ADCON0bits.GO = 1;
+   509  00CE  149F               	bsf	31,1	;volatile
+   510  00CF  28C9               	goto	l788
+   511  00D0  120A  118A  280C   	ljmp	start
+   512  00D3                     __end_of_main:	
+   513                           
+   514                           	psect	text1
+   515  00D3                     __ptext1:	
+   516 ;; *************** function _I2C_Slave_Init *****************
+   517 ;; Defined at:
+   518 ;;		line 93 in file "I2C.c"
+   519 ;; Parameters:    Size  Location     Type
+   520 ;;  address         1    wreg     unsigned char 
+   521 ;; Auto vars:     Size  Location     Type
+   522 ;;  address         1    3[COMMON] unsigned char 
+   523 ;; Return value:  Size  Location     Type
+   524 ;;                  1    wreg      void 
+   525 ;; Registers used:
+   526 ;;		wreg
+   527 ;; Tracked objects:
+   528 ;;		On entry : 0/0
+   529 ;;		On exit  : 0/0
+   530 ;;		Unchanged: 0/0
+   531 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   532 ;;      Params:         0       0       0       0       0
+   533 ;;      Locals:         1       0       0       0       0
+   534 ;;      Temps:          0       0       0       0       0
+   535 ;;      Totals:         1       0       0       0       0
+   536 ;;Total ram usage:        1 bytes
+   537 ;; Hardware stack levels used:    1
+   538 ;; Hardware stack levels required when called:    1
+   539 ;; This function calls:
+   540 ;;		Nothing
+   541 ;; This function is called by:
+   542 ;;		_main
+   543 ;; This function uses a non-reentrant model
+   544 ;;
+   545                           
+   546                           
+   547                           ;psect for function _I2C_Slave_Init
+   548  00D3                     _I2C_Slave_Init:	
    549                           
-   550                           ;psect for function _I2C_Slave_Init
-   551  00D5                     _I2C_Slave_Init:	
-   552                           
-   553                           ;incstack = 0
-   554                           ; Regs used in _I2C_Slave_Init: [wreg]
-   555                           ;I2C_Slave_Init@address stored from wreg
-   556  00D5  00F8               	movwf	I2C_Slave_Init@address
-   557  00D6                     l738:	
-   558                           
-   559                           ;I2C.c: 93: void I2C_Slave_Init(uint8_t address);I2C.c: 94: {;I2C.c: 95:     SSPADD = ad
+   550                           ;incstack = 0
+   551                           ; Regs used in _I2C_Slave_Init: [wreg]
+   552                           ;I2C_Slave_Init@address stored from wreg
+   553  00D3  00F8               	movwf	I2C_Slave_Init@address
+   554  00D4                     l736:	
+   555                           
+   556                           ;I2C.c: 93: void I2C_Slave_Init(uint8_t address);I2C.c: 94: {;I2C.c: 95:     SSPADD = ad
       +                          dress;
-   560  00D6  0878               	movf	I2C_Slave_Init@address,w
-   561  00D7  1683               	bsf	3,5	;RP0=1, select bank1
-   562  00D8  1303               	bcf	3,6	;RP1=0, select bank1
-   563  00D9  0093               	movwf	19	;volatile
-   564                           
-   565                           ;I2C.c: 96:     SSPCON = 0x36;
-   566  00DA  3036               	movlw	54
-   567  00DB  1283               	bcf	3,5	;RP0=0, select bank0
-   568  00DC  1303               	bcf	3,6	;RP1=0, select bank0
-   569  00DD  0094               	movwf	20	;volatile
-   570                           
-   571                           ;I2C.c: 97:     SSPSTAT = 0x80;
-   572  00DE  3080               	movlw	128
-   573  00DF  1683               	bsf	3,5	;RP0=1, select bank1
-   574  00E0  1303               	bcf	3,6	;RP1=0, select bank1
-   575  00E1  0094               	movwf	20	;volatile
-   576                           
-   577                           ;I2C.c: 98:     SSPCON2 = 0x01;
-   578  00E2  3001               	movlw	1
-   579  00E3  0091               	movwf	17	;volatile
-   580  00E4                     l740:	
-   581                           
-   582                           ;I2C.c: 99:     TRISC3 = 1;
-   583  00E4  1587               	bsf	7,3	;volatile
-   584  00E5                     l742:	
-   585                           
-   586                           ;I2C.c: 100:     TRISC4 = 1;
-   587  00E5  1607               	bsf	7,4	;volatile
-   588  00E6                     l744:	
-   589                           
-   590                           ;I2C.c: 101:     GIE = 1;
-   591  00E6  178B               	bsf	11,7	;volatile
-   592  00E7                     l746:	
-   593                           
-   594                           ;I2C.c: 102:     PEIE = 1;
-   595  00E7  170B               	bsf	11,6	;volatile
-   596  00E8                     l748:	
-   597                           
-   598                           ;I2C.c: 103:     SSPIF = 0;
-   599  00E8  1283               	bcf	3,5	;RP0=0, select bank0
-   600  00E9  1303               	bcf	3,6	;RP1=0, select bank0
-   601  00EA  118C               	bcf	12,3	;volatile
-   602  00EB                     l750:	
-   603                           
-   604                           ;I2C.c: 104:     SSPIE = 1;
-   605  00EB  1683               	bsf	3,5	;RP0=1, select bank1
-   606  00EC  1303               	bcf	3,6	;RP1=0, select bank1
-   607  00ED  158C               	bsf	12,3	;volatile
-   608  00EE                     l146:	
-   609  00EE  0008               	return
-   610  00EF                     __end_of_I2C_Slave_Init:	
-   611                           
-   612                           	psect	text2
-   613  0018                     __ptext2:	
-   614 ;; *************** function _isr *****************
-   615 ;; Defined at:
-   616 ;;		line 87 in file "Lab_5_S2.c"
-   617 ;; Parameters:    Size  Location     Type
-   618 ;;		None
-   619 ;; Auto vars:     Size  Location     Type
-   620 ;;		None
-   621 ;; Return value:  Size  Location     Type
-   622 ;;                  1    wreg      void 
-   623 ;; Registers used:
-   624 ;;		wreg, status,2, status,0
-   625 ;; Tracked objects:
-   626 ;;		On entry : 0/0
-   627 ;;		On exit  : 0/0
-   628 ;;		Unchanged: 0/0
-   629 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   630 ;;      Params:         0       0       0       0       0
-   631 ;;      Locals:         0       0       0       0       0
-   632 ;;      Temps:          3       0       0       0       0
-   633 ;;      Totals:         3       0       0       0       0
-   634 ;;Total ram usage:        3 bytes
-   635 ;; Hardware stack levels used:    1
-   636 ;; This function calls:
-   637 ;;		Nothing
-   638 ;; This function is called by:
-   639 ;;		Interrupt level 1
-   640 ;; This function uses a non-reentrant model
-   641 ;;
-   642                           
-   643                           
-   644                           ;psect for function _isr
-   645  0018                     _isr:	
-   646  0018                     i1l784:	
-   647                           
-   648                           ;Lab_5_S2.c: 90:     if(RBIF == 1){
-   649  0018  1C0B               	btfss	11,0	;volatile
-   650  0019  281B               	goto	u3_21
-   651  001A  281C               	goto	u3_20
-   652  001B                     u3_21:	
-   653  001B  2847               	goto	i1l810
-   654  001C                     u3_20:	
-   655  001C                     i1l786:	
-   656                           
-   657                           ;Lab_5_S2.c: 91:         RBIF = 0;
-   658  001C  100B               	bcf	11,0	;volatile
-   659  001D                     i1l788:	
-   660                           
-   661                           ;Lab_5_S2.c: 92:         if(BOTON == 0){
-   662  001D  0879               	movf	_BOTON,w
-   663  001E  1D03               	btfss	3,2
-   664  001F  2821               	goto	u4_21
-   665  0020  2822               	goto	u4_20
-   666  0021                     u4_21:	
-   667  0021  2847               	goto	i1l810
-   668  0022                     u4_20:	
-   669  0022                     i1l790:	
-   670                           
-   671                           ;Lab_5_S2.c: 93:             if (PORTBbits.RB0 == 1){
-   672  0022  1283               	bcf	3,5	;RP0=0, select bank0
-   673  0023  1303               	bcf	3,6	;RP1=0, select bank0
-   674  0024  1C06               	btfss	6,0	;volatile
-   675  0025  2827               	goto	u5_21
-   676  0026  2828               	goto	u5_20
-   677  0027                     u5_21:	
-   678  0027  2835               	goto	i1l800
-   679  0028                     u5_20:	
-   680  0028                     i1l792:	
-   681                           
-   682                           ;Lab_5_S2.c: 94:              BOTON = 1;
-   683  0028  01F9               	clrf	_BOTON
-   684  0029  0AF9               	incf	_BOTON,f
-   685  002A                     i1l794:	
-   686                           
-   687                           ;Lab_5_S2.c: 95:              CONTADOR++;
-   688  002A  3001               	movlw	1
-   689  002B  00F5               	movwf	??_isr
-   690  002C  0875               	movf	??_isr,w
-   691  002D  07F2               	addwf	_CONTADOR,f
-   692  002E                     i1l796:	
-   693                           
-   694                           ;Lab_5_S2.c: 96:              if (CONTADOR >15){
-   695  002E  3010               	movlw	16
-   696  002F  0272               	subwf	_CONTADOR,w
-   697  0030  1C03               	skipc
-   698  0031  2833               	goto	u6_21
-   699  0032  2834               	goto	u6_20
-   700  0033                     u6_21:	
-   701  0033  2835               	goto	i1l800
-   702  0034                     u6_20:	
-   703  0034                     i1l798:	
-   704                           
-   705                           ;Lab_5_S2.c: 97:                  CONTADOR = 0;
-   706  0034  01F2               	clrf	_CONTADOR
-   707  0035                     i1l800:	
-   708                           
-   709                           ;Lab_5_S2.c: 100:             if (PORTBbits.RB1 == 1){
-   710  0035  1C86               	btfss	6,1	;volatile
-   711  0036  2838               	goto	u7_21
-   712  0037  2839               	goto	u7_20
-   713  0038                     u7_21:	
-   714  0038  2847               	goto	i1l810
-   715  0039                     u7_20:	
-   716  0039                     i1l802:	
-   717                           
-   718                           ;Lab_5_S2.c: 101:                 BOTON = 1;
-   719  0039  01F9               	clrf	_BOTON
-   720  003A  0AF9               	incf	_BOTON,f
-   721  003B                     i1l804:	
-   722                           
-   723                           ;Lab_5_S2.c: 102:              if (CONTADOR == 0){
-   724  003B  0872               	movf	_CONTADOR,w
-   725  003C  1D03               	btfss	3,2
-   726  003D  283F               	goto	u8_21
-   727  003E  2840               	goto	u8_20
-   728  003F                     u8_21:	
-   729  003F  2845               	goto	i1l808
-   730  0040                     u8_20:	
-   731  0040                     i1l806:	
-   732                           
-   733                           ;Lab_5_S2.c: 103:                  CONTADOR = 15;
-   734  0040  300F               	movlw	15
-   735  0041  00F5               	movwf	??_isr
-   736  0042  0875               	movf	??_isr,w
-   737  0043  00F2               	movwf	_CONTADOR
-   738                           
-   739                           ;Lab_5_S2.c: 104:              }
-   740  0044  2847               	goto	i1l810
-   741  0045                     i1l808:	
-   742                           
-   743                           ;Lab_5_S2.c: 106:                  CONTADOR--;
-   744  0045  3001               	movlw	1
-   745  0046  02F2               	subwf	_CONTADOR,f
-   746  0047                     i1l810:	
-   747                           
-   748                           ;Lab_5_S2.c: 112:     if(PIR1bits.SSPIF == 1){
-   749  0047  1283               	bcf	3,5	;RP0=0, select bank0
-   750  0048  1303               	bcf	3,6	;RP1=0, select bank0
-   751  0049  1D8C               	btfss	12,3	;volatile
-   752  004A  284C               	goto	u9_21
-   753  004B  284D               	goto	u9_20
-   754  004C                     u9_21:	
-   755  004C  28A3               	goto	i1l91
-   756  004D                     u9_20:	
-   757  004D                     i1l812:	
+   557  00D4  0878               	movf	I2C_Slave_Init@address,w
+   558  00D5  1683               	bsf	3,5	;RP0=1, select bank1
+   559  00D6  1303               	bcf	3,6	;RP1=0, select bank1
+   560  00D7  0093               	movwf	19	;volatile
+   561                           
+   562                           ;I2C.c: 96:     SSPCON = 0x36;
+   563  00D8  3036               	movlw	54
+   564  00D9  1283               	bcf	3,5	;RP0=0, select bank0
+   565  00DA  1303               	bcf	3,6	;RP1=0, select bank0
+   566  00DB  0094               	movwf	20	;volatile
+   567                           
+   568                           ;I2C.c: 97:     SSPSTAT = 0x80;
+   569  00DC  3080               	movlw	128
+   570  00DD  1683               	bsf	3,5	;RP0=1, select bank1
+   571  00DE  1303               	bcf	3,6	;RP1=0, select bank1
+   572  00DF  0094               	movwf	20	;volatile
+   573                           
+   574                           ;I2C.c: 98:     SSPCON2 = 0x01;
+   575  00E0  3001               	movlw	1
+   576  00E1  0091               	movwf	17	;volatile
+   577  00E2                     l738:	
+   578                           
+   579                           ;I2C.c: 99:     TRISC3 = 1;
+   580  00E2  1587               	bsf	7,3	;volatile
+   581  00E3                     l740:	
+   582                           
+   583                           ;I2C.c: 100:     TRISC4 = 1;
+   584  00E3  1607               	bsf	7,4	;volatile
+   585  00E4                     l742:	
+   586                           
+   587                           ;I2C.c: 101:     GIE = 1;
+   588  00E4  178B               	bsf	11,7	;volatile
+   589  00E5                     l744:	
+   590                           
+   591                           ;I2C.c: 102:     PEIE = 1;
+   592  00E5  170B               	bsf	11,6	;volatile
+   593  00E6                     l746:	
+   594                           
+   595                           ;I2C.c: 103:     SSPIF = 0;
+   596  00E6  1283               	bcf	3,5	;RP0=0, select bank0
+   597  00E7  1303               	bcf	3,6	;RP1=0, select bank0
+   598  00E8  118C               	bcf	12,3	;volatile
+   599  00E9                     l748:	
+   600                           
+   601                           ;I2C.c: 104:     SSPIE = 1;
+   602  00E9  1683               	bsf	3,5	;RP0=1, select bank1
+   603  00EA  1303               	bcf	3,6	;RP1=0, select bank1
+   604  00EB  158C               	bsf	12,3	;volatile
+   605  00EC                     l144:	
+   606  00EC  0008               	return
+   607  00ED                     __end_of_I2C_Slave_Init:	
+   608                           
+   609                           	psect	text2
+   610  0018                     __ptext2:	
+   611 ;; *************** function _isr *****************
+   612 ;; Defined at:
+   613 ;;		line 84 in file "Lab_5_S2.c"
+   614 ;; Parameters:    Size  Location     Type
+   615 ;;		None
+   616 ;; Auto vars:     Size  Location     Type
+   617 ;;		None
+   618 ;; Return value:  Size  Location     Type
+   619 ;;                  1    wreg      void 
+   620 ;; Registers used:
+   621 ;;		wreg, status,2, status,0
+   622 ;; Tracked objects:
+   623 ;;		On entry : 0/0
+   624 ;;		On exit  : 0/0
+   625 ;;		Unchanged: 0/0
+   626 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   627 ;;      Params:         0       0       0       0       0
+   628 ;;      Locals:         0       0       0       0       0
+   629 ;;      Temps:          3       0       0       0       0
+   630 ;;      Totals:         3       0       0       0       0
+   631 ;;Total ram usage:        3 bytes
+   632 ;; Hardware stack levels used:    1
+   633 ;; This function calls:
+   634 ;;		Nothing
+   635 ;; This function is called by:
+   636 ;;		Interrupt level 1
+   637 ;; This function uses a non-reentrant model
+   638 ;;
+   639                           
+   640                           
+   641                           ;psect for function _isr
+   642  0018                     _isr:	
+   643  0018                     i1l794:	
+   644                           
+   645                           ;Lab_5_S2.c: 87:     if(RBIF == 1){
+   646  0018  1C0B               	btfss	11,0	;volatile
+   647  0019  281B               	goto	u3_21
+   648  001A  281C               	goto	u3_20
+   649  001B                     u3_21:	
+   650  001B  2847               	goto	i1l820
+   651  001C                     u3_20:	
+   652  001C                     i1l796:	
+   653                           
+   654                           ;Lab_5_S2.c: 88:         RBIF = 0;
+   655  001C  100B               	bcf	11,0	;volatile
+   656  001D                     i1l798:	
+   657                           
+   658                           ;Lab_5_S2.c: 89:         if(BOTON == 0){
+   659  001D  0879               	movf	_BOTON,w
+   660  001E  1D03               	btfss	3,2
+   661  001F  2821               	goto	u4_21
+   662  0020  2822               	goto	u4_20
+   663  0021                     u4_21:	
+   664  0021  2847               	goto	i1l820
+   665  0022                     u4_20:	
+   666  0022                     i1l800:	
+   667                           
+   668                           ;Lab_5_S2.c: 90:             if (PORTBbits.RB0 == 1){
+   669  0022  1283               	bcf	3,5	;RP0=0, select bank0
+   670  0023  1303               	bcf	3,6	;RP1=0, select bank0
+   671  0024  1C06               	btfss	6,0	;volatile
+   672  0025  2827               	goto	u5_21
+   673  0026  2828               	goto	u5_20
+   674  0027                     u5_21:	
+   675  0027  2835               	goto	i1l810
+   676  0028                     u5_20:	
+   677  0028                     i1l802:	
+   678                           
+   679                           ;Lab_5_S2.c: 91:              BOTON = 1;
+   680  0028  01F9               	clrf	_BOTON
+   681  0029  0AF9               	incf	_BOTON,f
+   682  002A                     i1l804:	
+   683                           
+   684                           ;Lab_5_S2.c: 92:              CONTADOR++;
+   685  002A  3001               	movlw	1
+   686  002B  00F5               	movwf	??_isr
+   687  002C  0875               	movf	??_isr,w
+   688  002D  07F2               	addwf	_CONTADOR,f
+   689  002E                     i1l806:	
+   690                           
+   691                           ;Lab_5_S2.c: 93:              if (CONTADOR >15){
+   692  002E  3010               	movlw	16
+   693  002F  0272               	subwf	_CONTADOR,w
+   694  0030  1C03               	skipc
+   695  0031  2833               	goto	u6_21
+   696  0032  2834               	goto	u6_20
+   697  0033                     u6_21:	
+   698  0033  2835               	goto	i1l810
+   699  0034                     u6_20:	
+   700  0034                     i1l808:	
+   701                           
+   702                           ;Lab_5_S2.c: 94:                  CONTADOR = 0;
+   703  0034  01F2               	clrf	_CONTADOR
+   704  0035                     i1l810:	
+   705                           
+   706                           ;Lab_5_S2.c: 97:             if (PORTBbits.RB1 == 1){
+   707  0035  1C86               	btfss	6,1	;volatile
+   708  0036  2838               	goto	u7_21
+   709  0037  2839               	goto	u7_20
+   710  0038                     u7_21:	
+   711  0038  2847               	goto	i1l820
+   712  0039                     u7_20:	
+   713  0039                     i1l812:	
+   714                           
+   715                           ;Lab_5_S2.c: 98:                 BOTON = 1;
+   716  0039  01F9               	clrf	_BOTON
+   717  003A  0AF9               	incf	_BOTON,f
+   718  003B                     i1l814:	
+   719                           
+   720                           ;Lab_5_S2.c: 99:              if (CONTADOR == 0){
+   721  003B  0872               	movf	_CONTADOR,w
+   722  003C  1D03               	btfss	3,2
+   723  003D  283F               	goto	u8_21
+   724  003E  2840               	goto	u8_20
+   725  003F                     u8_21:	
+   726  003F  2845               	goto	i1l818
+   727  0040                     u8_20:	
+   728  0040                     i1l816:	
+   729                           
+   730                           ;Lab_5_S2.c: 100:                  CONTADOR = 15;
+   731  0040  300F               	movlw	15
+   732  0041  00F5               	movwf	??_isr
+   733  0042  0875               	movf	??_isr,w
+   734  0043  00F2               	movwf	_CONTADOR
+   735                           
+   736                           ;Lab_5_S2.c: 101:              }
+   737  0044  2847               	goto	i1l820
+   738  0045                     i1l818:	
+   739                           
+   740                           ;Lab_5_S2.c: 103:                  CONTADOR--;
+   741  0045  3001               	movlw	1
+   742  0046  02F2               	subwf	_CONTADOR,f
+   743  0047                     i1l820:	
+   744                           
+   745                           ;Lab_5_S2.c: 109:     if(PIR1bits.SSPIF == 1){
+   746  0047  1283               	bcf	3,5	;RP0=0, select bank0
+   747  0048  1303               	bcf	3,6	;RP1=0, select bank0
+   748  0049  1D8C               	btfss	12,3	;volatile
+   749  004A  284C               	goto	u9_21
+   750  004B  284D               	goto	u9_20
+   751  004C                     u9_21:	
+   752  004C  28A3               	goto	i1l89
+   753  004D                     u9_20:	
+   754  004D                     i1l822:	
+   755                           
+   756                           ;Lab_5_S2.c: 111:         SSPCONbits.CKP = 0;
+   757  004D  1214               	bcf	20,4	;volatile
    758                           
-   759                           ;Lab_5_S2.c: 114:         SSPCONbits.CKP = 0;
-   760  004D  1214               	bcf	20,4	;volatile
-   761                           
-   762                           ;Lab_5_S2.c: 116:         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
-   763  004E  1B14               	btfsc	20,6	;volatile
-   764  004F  2851               	goto	u10_21
-   765  0050  2852               	goto	u10_20
-   766  0051                     u10_21:	
-   767  0051  2856               	goto	i1l816
-   768  0052                     u10_20:	
-   769  0052                     i1l814:	
-   770  0052  1F94               	btfss	20,7	;volatile
-   771  0053  2855               	goto	u11_21
-   772  0054  2856               	goto	u11_20
-   773  0055                     u11_21:	
-   774  0055  285D               	goto	i1l824
-   775  0056                     u11_20:	
-   776  0056                     i1l816:	
-   777                           
-   778                           ;Lab_5_S2.c: 117:             z = SSPBUF;
-   779  0056  0813               	movf	19,w	;volatile
-   780  0057  00F5               	movwf	??_isr
-   781  0058  0875               	movf	??_isr,w
-   782  0059  00F4               	movwf	_z
-   783  005A                     i1l818:	
-   784                           
-   785                           ;Lab_5_S2.c: 118:             SSPCONbits.SSPOV = 0;
-   786  005A  1314               	bcf	20,6	;volatile
-   787  005B                     i1l820:	
-   788                           
-   789                           ;Lab_5_S2.c: 119:             SSPCONbits.WCOL = 0;
-   790  005B  1394               	bcf	20,7	;volatile
-   791  005C                     i1l822:	
-   792                           
-   793                           ;Lab_5_S2.c: 120:             SSPCONbits.CKP = 1;
-   794  005C  1614               	bsf	20,4	;volatile
-   795  005D                     i1l824:	
-   796                           
-   797                           ;Lab_5_S2.c: 123:         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
-   798  005D  1683               	bsf	3,5	;RP0=1, select bank1
-   799  005E  1303               	bcf	3,6	;RP1=0, select bank1
-   800  005F  1A94               	btfsc	20,5	;volatile
-   801  0060  2862               	goto	u12_21
-   802  0061  2863               	goto	u12_20
-   803  0062                     u12_21:	
-   804  0062  287F               	goto	i1l82
-   805  0063                     u12_20:	
-   806  0063                     i1l826:	
-   807  0063  1914               	btfsc	20,2	;volatile
-   808  0064  2866               	goto	u13_21
-   809  0065  2867               	goto	u13_20
-   810  0066                     u13_21:	
-   811  0066  287F               	goto	i1l82
-   812  0067                     u13_20:	
-   813  0067                     i1l828:	
-   814                           
-   815                           ;Lab_5_S2.c: 125:             z = SSPBUF;
-   816  0067  1283               	bcf	3,5	;RP0=0, select bank0
-   817  0068  1303               	bcf	3,6	;RP1=0, select bank0
-   818  0069  0813               	movf	19,w	;volatile
-   819  006A  00F5               	movwf	??_isr
-   820  006B  0875               	movf	??_isr,w
-   821  006C  00F4               	movwf	_z
-   822  006D                     i1l830:	
-   823                           
-   824                           ;Lab_5_S2.c: 127:             PIR1bits.SSPIF = 0;
-   825  006D  118C               	bcf	12,3	;volatile
-   826  006E                     i1l832:	
-   827                           
-   828                           ;Lab_5_S2.c: 128:             SSPCONbits.CKP = 1;
-   829  006E  1614               	bsf	20,4	;volatile
-   830  006F                     i1l83:	
-   831                           ;Lab_5_S2.c: 129:             while(!SSPSTATbits.BF);
-   832                           
-   833  006F  1683               	bsf	3,5	;RP0=1, select bank1
-   834  0070  1303               	bcf	3,6	;RP1=0, select bank1
-   835  0071  1C14               	btfss	20,0	;volatile
-   836  0072  2874               	goto	u14_21
-   837  0073  2875               	goto	u14_20
-   838  0074                     u14_21:	
-   839  0074  286F               	goto	i1l83
-   840  0075                     u14_20:	
-   841  0075                     i1l834:	
-   842                           
-   843                           ;Lab_5_S2.c: 130:             PORTD = SSPBUF;
-   844  0075  1283               	bcf	3,5	;RP0=0, select bank0
-   845  0076  1303               	bcf	3,6	;RP1=0, select bank0
-   846  0077  0813               	movf	19,w	;volatile
-   847  0078  0088               	movwf	8	;volatile
-   848                           
-   849                           ;Lab_5_S2.c: 131:             _delay((unsigned long)((250)*(8000000/4000000.0)));
-   850  0079  30A6               	movlw	166
-   851  007A  00F5               	movwf	??_isr
-   852  007B                     u20_27:	
-   853  007B  0BF5               	decfsz	??_isr,f
-   854  007C  287B               	goto	u20_27
-   855  007D  0000               	nop
-   856                           
-   857                           ;Lab_5_S2.c: 133:         }
-   858  007E  28A0               	goto	i1l86
-   859  007F                     i1l82:	
-   860                           ;Lab_5_S2.c: 134:         else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
-   861                           
-   862  007F  1A94               	btfsc	20,5	;volatile
-   863  0080  2882               	goto	u15_21
-   864  0081  2883               	goto	u15_20
-   865  0082                     u15_21:	
-   866  0082  28A0               	goto	i1l86
-   867  0083                     u15_20:	
-   868  0083                     i1l836:	
-   869  0083  1D14               	btfss	20,2	;volatile
-   870  0084  2886               	goto	u16_21
-   871  0085  2887               	goto	u16_20
-   872  0086                     u16_21:	
-   873  0086  28A0               	goto	i1l86
-   874  0087                     u16_20:	
-   875  0087                     i1l838:	
-   876                           
-   877                           ;Lab_5_S2.c: 135:             z = SSPBUF;
-   878  0087  1283               	bcf	3,5	;RP0=0, select bank0
-   879  0088  1303               	bcf	3,6	;RP1=0, select bank0
-   880  0089  0813               	movf	19,w	;volatile
-   881  008A  00F5               	movwf	??_isr
-   882  008B  0875               	movf	??_isr,w
-   883  008C  00F4               	movwf	_z
-   884  008D                     i1l840:	
-   885                           
-   886                           ;Lab_5_S2.c: 136:             BF = 0;
-   887  008D  1683               	bsf	3,5	;RP0=1, select bank1
-   888  008E  1303               	bcf	3,6	;RP1=0, select bank1
-   889  008F  1014               	bcf	20,0	;volatile
-   890                           
-   891                           ;Lab_5_S2.c: 137:             SSPBUF = PORTA;
-   892  0090  1283               	bcf	3,5	;RP0=0, select bank0
-   893  0091  1303               	bcf	3,6	;RP1=0, select bank0
-   894  0092  0805               	movf	5,w	;volatile
-   895  0093  0093               	movwf	19	;volatile
-   896  0094                     i1l842:	
+   759                           ;Lab_5_S2.c: 113:         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+   760  004E  1B14               	btfsc	20,6	;volatile
+   761  004F  2851               	goto	u10_21
+   762  0050  2852               	goto	u10_20
+   763  0051                     u10_21:	
+   764  0051  2856               	goto	i1l826
+   765  0052                     u10_20:	
+   766  0052                     i1l824:	
+   767  0052  1F94               	btfss	20,7	;volatile
+   768  0053  2855               	goto	u11_21
+   769  0054  2856               	goto	u11_20
+   770  0055                     u11_21:	
+   771  0055  285D               	goto	i1l834
+   772  0056                     u11_20:	
+   773  0056                     i1l826:	
+   774                           
+   775                           ;Lab_5_S2.c: 114:             z = SSPBUF;
+   776  0056  0813               	movf	19,w	;volatile
+   777  0057  00F5               	movwf	??_isr
+   778  0058  0875               	movf	??_isr,w
+   779  0059  00F4               	movwf	_z
+   780  005A                     i1l828:	
+   781                           
+   782                           ;Lab_5_S2.c: 115:             SSPCONbits.SSPOV = 0;
+   783  005A  1314               	bcf	20,6	;volatile
+   784  005B                     i1l830:	
+   785                           
+   786                           ;Lab_5_S2.c: 116:             SSPCONbits.WCOL = 0;
+   787  005B  1394               	bcf	20,7	;volatile
+   788  005C                     i1l832:	
+   789                           
+   790                           ;Lab_5_S2.c: 117:             SSPCONbits.CKP = 1;
+   791  005C  1614               	bsf	20,4	;volatile
+   792  005D                     i1l834:	
+   793                           
+   794                           ;Lab_5_S2.c: 120:         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+   795  005D  1683               	bsf	3,5	;RP0=1, select bank1
+   796  005E  1303               	bcf	3,6	;RP1=0, select bank1
+   797  005F  1A94               	btfsc	20,5	;volatile
+   798  0060  2862               	goto	u12_21
+   799  0061  2863               	goto	u12_20
+   800  0062                     u12_21:	
+   801  0062  287F               	goto	i1l80
+   802  0063                     u12_20:	
+   803  0063                     i1l836:	
+   804  0063  1914               	btfsc	20,2	;volatile
+   805  0064  2866               	goto	u13_21
+   806  0065  2867               	goto	u13_20
+   807  0066                     u13_21:	
+   808  0066  287F               	goto	i1l80
+   809  0067                     u13_20:	
+   810  0067                     i1l838:	
+   811                           
+   812                           ;Lab_5_S2.c: 122:             z = SSPBUF;
+   813  0067  1283               	bcf	3,5	;RP0=0, select bank0
+   814  0068  1303               	bcf	3,6	;RP1=0, select bank0
+   815  0069  0813               	movf	19,w	;volatile
+   816  006A  00F5               	movwf	??_isr
+   817  006B  0875               	movf	??_isr,w
+   818  006C  00F4               	movwf	_z
+   819  006D                     i1l840:	
+   820                           
+   821                           ;Lab_5_S2.c: 124:             PIR1bits.SSPIF = 0;
+   822  006D  118C               	bcf	12,3	;volatile
+   823  006E                     i1l842:	
+   824                           
+   825                           ;Lab_5_S2.c: 125:             SSPCONbits.CKP = 1;
+   826  006E  1614               	bsf	20,4	;volatile
+   827  006F                     i1l81:	
+   828                           ;Lab_5_S2.c: 126:             while(!SSPSTATbits.BF);
+   829                           
+   830  006F  1683               	bsf	3,5	;RP0=1, select bank1
+   831  0070  1303               	bcf	3,6	;RP1=0, select bank1
+   832  0071  1C14               	btfss	20,0	;volatile
+   833  0072  2874               	goto	u14_21
+   834  0073  2875               	goto	u14_20
+   835  0074                     u14_21:	
+   836  0074  286F               	goto	i1l81
+   837  0075                     u14_20:	
+   838  0075                     i1l844:	
+   839                           
+   840                           ;Lab_5_S2.c: 127:             PORTD = SSPBUF;
+   841  0075  1283               	bcf	3,5	;RP0=0, select bank0
+   842  0076  1303               	bcf	3,6	;RP1=0, select bank0
+   843  0077  0813               	movf	19,w	;volatile
+   844  0078  0088               	movwf	8	;volatile
+   845                           
+   846                           ;Lab_5_S2.c: 128:             _delay((unsigned long)((250)*(8000000/4000000.0)));
+   847  0079  30A6               	movlw	166
+   848  007A  00F5               	movwf	??_isr
+   849  007B                     u20_27:	
+   850  007B  0BF5               	decfsz	??_isr,f
+   851  007C  287B               	goto	u20_27
+   852  007D  0000               	nop
+   853                           
+   854                           ;Lab_5_S2.c: 130:         }
+   855  007E  28A0               	goto	i1l84
+   856  007F                     i1l80:	
+   857                           ;Lab_5_S2.c: 131:         else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+   858                           
+   859  007F  1A94               	btfsc	20,5	;volatile
+   860  0080  2882               	goto	u15_21
+   861  0081  2883               	goto	u15_20
+   862  0082                     u15_21:	
+   863  0082  28A0               	goto	i1l84
+   864  0083                     u15_20:	
+   865  0083                     i1l846:	
+   866  0083  1D14               	btfss	20,2	;volatile
+   867  0084  2886               	goto	u16_21
+   868  0085  2887               	goto	u16_20
+   869  0086                     u16_21:	
+   870  0086  28A0               	goto	i1l84
+   871  0087                     u16_20:	
+   872  0087                     i1l848:	
+   873                           
+   874                           ;Lab_5_S2.c: 132:             z = SSPBUF;
+   875  0087  1283               	bcf	3,5	;RP0=0, select bank0
+   876  0088  1303               	bcf	3,6	;RP1=0, select bank0
+   877  0089  0813               	movf	19,w	;volatile
+   878  008A  00F5               	movwf	??_isr
+   879  008B  0875               	movf	??_isr,w
+   880  008C  00F4               	movwf	_z
+   881  008D                     i1l850:	
+   882                           
+   883                           ;Lab_5_S2.c: 133:             BF = 0;
+   884  008D  1683               	bsf	3,5	;RP0=1, select bank1
+   885  008E  1303               	bcf	3,6	;RP1=0, select bank1
+   886  008F  1014               	bcf	20,0	;volatile
+   887                           
+   888                           ;Lab_5_S2.c: 134:             SSPBUF = PORTA;
+   889  0090  1283               	bcf	3,5	;RP0=0, select bank0
+   890  0091  1303               	bcf	3,6	;RP1=0, select bank0
+   891  0092  0805               	movf	5,w	;volatile
+   892  0093  0093               	movwf	19	;volatile
+   893  0094                     i1l852:	
+   894                           
+   895                           ;Lab_5_S2.c: 135:             SSPCONbits.CKP = 1;
+   896  0094  1614               	bsf	20,4	;volatile
    897                           
-   898                           ;Lab_5_S2.c: 138:             SSPCONbits.CKP = 1;
-   899  0094  1614               	bsf	20,4	;volatile
-   900                           
-   901                           ;Lab_5_S2.c: 139:             _delay((unsigned long)((250)*(8000000/4000000.0)));
-   902  0095  30A6               	movlw	166
-   903  0096  00F5               	movwf	??_isr
-   904  0097                     u21_27:	
-   905  0097  0BF5               	decfsz	??_isr,f
-   906  0098  2897               	goto	u21_27
-   907  0099  0000               	nop
-   908  009A                     i1l88:	
-   909                           ;Lab_5_S2.c: 140:             while(SSPSTATbits.BF);
-   910                           
-   911  009A  1683               	bsf	3,5	;RP0=1, select bank1
-   912  009B  1303               	bcf	3,6	;RP1=0, select bank1
-   913  009C  1814               	btfsc	20,0	;volatile
-   914  009D  289F               	goto	u17_21
-   915  009E  28A0               	goto	u17_20
-   916  009F                     u17_21:	
-   917  009F  289A               	goto	i1l88
-   918  00A0                     u17_20:	
-   919  00A0                     i1l86:	
-   920                           
-   921                           ;Lab_5_S2.c: 143:         PIR1bits.SSPIF = 0;
-   922  00A0  1283               	bcf	3,5	;RP0=0, select bank0
-   923  00A1  1303               	bcf	3,6	;RP1=0, select bank0
-   924  00A2  118C               	bcf	12,3	;volatile
-   925  00A3                     i1l91:	
-   926  00A3  0877               	movf	??_isr+2,w
-   927  00A4  008A               	movwf	10
-   928  00A5  0E76               	swapf	(??_isr+1)^(0+4294967168),w
-   929  00A6  0083               	movwf	3
-   930  00A7  0EFE               	swapf	btemp,f
-   931  00A8  0E7E               	swapf	btemp,w
-   932  00A9  0009               	retfie
-   933  00AA                     __end_of_isr:	
-   934  007E                     btemp	set	126	;btemp
-   935  007E                     wtemp0	set	126
-   936                           
-   937                           	psect	intentry
-   938  0004                     __pintentry:	
-   939                           ;incstack = 0
-   940                           ; Regs used in _isr: [wreg+status,2+status,0]
-   941                           
-   942  0004                     interrupt_function:	
-   943  007E                     saved_w	set	btemp
-   944  0004  00FE               	movwf	btemp
-   945  0005  0E03               	swapf	3,w
-   946  0006  00F6               	movwf	??_isr+1
-   947  0007  080A               	movf	10,w
-   948  0008  00F7               	movwf	??_isr+2
-   949  0009  120A  118A  2818   	ljmp	_isr
+   898                           ;Lab_5_S2.c: 136:             _delay((unsigned long)((250)*(8000000/4000000.0)));
+   899  0095  30A6               	movlw	166
+   900  0096  00F5               	movwf	??_isr
+   901  0097                     u21_27:	
+   902  0097  0BF5               	decfsz	??_isr,f
+   903  0098  2897               	goto	u21_27
+   904  0099  0000               	nop
+   905  009A                     i1l86:	
+   906                           ;Lab_5_S2.c: 137:             while(SSPSTATbits.BF);
+   907                           
+   908  009A  1683               	bsf	3,5	;RP0=1, select bank1
+   909  009B  1303               	bcf	3,6	;RP1=0, select bank1
+   910  009C  1814               	btfsc	20,0	;volatile
+   911  009D  289F               	goto	u17_21
+   912  009E  28A0               	goto	u17_20
+   913  009F                     u17_21:	
+   914  009F  289A               	goto	i1l86
+   915  00A0                     u17_20:	
+   916  00A0                     i1l84:	
+   917                           
+   918                           ;Lab_5_S2.c: 140:         PIR1bits.SSPIF = 0;
+   919  00A0  1283               	bcf	3,5	;RP0=0, select bank0
+   920  00A1  1303               	bcf	3,6	;RP1=0, select bank0
+   921  00A2  118C               	bcf	12,3	;volatile
+   922  00A3                     i1l89:	
+   923  00A3  0877               	movf	??_isr+2,w
+   924  00A4  008A               	movwf	10
+   925  00A5  0E76               	swapf	(??_isr+1)^(0+4294967168),w
+   926  00A6  0083               	movwf	3
+   927  00A7  0EFE               	swapf	btemp,f
+   928  00A8  0E7E               	swapf	btemp,w
+   929  00A9  0009               	retfie
+   930  00AA                     __end_of_isr:	
+   931  007E                     btemp	set	126	;btemp
+   932  007E                     wtemp0	set	126
+   933                           
+   934                           	psect	intentry
+   935  0004                     __pintentry:	
+   936                           ;incstack = 0
+   937                           ; Regs used in _isr: [wreg+status,2+status,0]
+   938                           
+   939  0004                     interrupt_function:	
+   940  007E                     saved_w	set	btemp
+   941  0004  00FE               	movwf	btemp
+   942  0005  0E03               	swapf	3,w
+   943  0006  00F6               	movwf	??_isr+1
+   944  0007  080A               	movf	10,w
+   945  0008  00F7               	movwf	??_isr+2
+   946  0009  120A  118A  2818   	ljmp	_isr
 
 
 Data Sizes:
@@ -1081,21 +1078,23 @@ DATA                 0      0       A      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                   Sun Feb 23 22:40:46 2020
+Symbol Table                                                                                   Mon Feb 24 09:45:43 2020
 
                        _z 0074               __CFG_CP$OFF 0000               _SSPSTATbits 0094  
-                      _BF 04A0                       l146 00EE                       l740 00E4  
-                     l750 00EB                       l742 00E5                       l744 00E6  
-                     l760 00B0                       l746 00E7                       l738 00D6  
-                     l770 00C2                       l762 00B1                       l748 00E8  
-                     l780 00CC                       l772 00C3                       l764 00BC  
-                     l756 00AA                       l782 00D0                       l774 00C4  
-                     l766 00BD                       l758 00AF                       l776 00C5  
-                     l768 00BE                       l778 00CB                       _GIE 005F  
+                      _BF 04A0                       l144 00EC                       l740 00E3  
+                     l742 00E4                       l744 00E5                       l736 00D4  
+                     l760 00B0                       l746 00E6                       l738 00E2  
+                     l770 00B9                       l762 00B3                       l754 00AA  
+                     l748 00E9                       l780 00C0                       l772 00BA  
+                     l764 00B4                       l756 00AD                       l790 00CA  
+                     l782 00C1                       l774 00BB                       l766 00B5  
+                     l758 00AF                       l792 00CE                       l784 00C2  
+                     l776 00BC                       l768 00B8                       l786 00C3  
+                     l778 00BD                       l788 00C9                       _GIE 005F  
             __CFG_CPD$OFF 0000                       _isr 0018              __CFG_LVP$OFF 0000  
                     ?_isr 0075                      _IOCB 0096                      _PEIE 005E  
-                    _RBIF 0058                      i1l82 007F                      i1l83 006F  
-                    i1l91 00A3                      i1l86 00A0                      i1l88 009A  
+                    _RBIF 0058                      i1l80 007F                      i1l81 006F  
+                    i1l84 00A0                      i1l86 009A                      i1l89 00A3  
                     u3_20 001C                      u3_21 001B                      u4_20 0022  
                     u4_21 0021                      u5_20 0028                      u5_21 0027  
                     u6_20 0034                      u6_21 0033                      u7_20 0039  
@@ -1104,17 +1103,17 @@ Symbol Table                                                                    
                     _dato 0073                      _main 00AA                      btemp 007E  
                     start 000C             __CFG_IESO$OFF 0000                     ??_isr 0075  
                    ?_main 0075             __CFG_WDTE$OFF 0000                     _ANSEL 0188  
-                   _BOTON 0079                     i1l800 0035                     i1l802 0039  
-                   i1l810 0047                     i1l820 005B                     i1l812 004D  
-                   i1l804 003B                     i1l830 006D                     i1l822 005C  
-                   i1l814 0052                     i1l806 0040                     i1l840 008D  
-                   i1l832 006E                     i1l824 005D                     i1l816 0056  
-                   i1l808 0045                     i1l842 0094                     i1l834 0075  
-                   i1l826 0063                     i1l818 005A                     i1l836 0083  
-                   i1l828 0067                     i1l838 0087                     i1l790 0022  
-                   i1l792 0028                     i1l784 0018                     i1l794 002A  
-                   i1l786 001C                     i1l796 002E                     i1l788 001D  
-                   i1l798 0034                     u10_20 0052                     u10_21 0051  
+                   _BOTON 0079                     i1l800 0022                     i1l802 0028  
+                   i1l810 0035                     i1l812 0039                     i1l804 002A  
+                   i1l820 0047                     i1l830 005B                     i1l822 004D  
+                   i1l814 003B                     i1l806 002E                     i1l840 006D  
+                   i1l832 005C                     i1l824 0052                     i1l816 0040  
+                   i1l808 0034                     i1l850 008D                     i1l842 006E  
+                   i1l834 005D                     i1l826 0056                     i1l818 0045  
+                   i1l852 0094                     i1l844 0075                     i1l836 0063  
+                   i1l828 005A                     i1l846 0083                     i1l838 0067  
+                   i1l848 0087                     i1l794 0018                     i1l796 001C  
+                   i1l798 001D                     u10_20 0052                     u10_21 0051  
                    u11_20 0056                     u11_21 0055                     u12_20 0063  
                    u12_21 0062                     u20_27 007B                     u13_20 0067  
                    u13_21 0066                     u21_27 0097                     u14_20 0075  
@@ -1125,20 +1124,20 @@ Symbol Table                                                                    
                    _TRISD 0088                     _SSPIE 0463                     _SSPIF 0063  
           __CFG_FCMEN$OFF 0000            __CFG_BOREN$OFF 0000                     pclath 000A  
                    status 0003                     wtemp0 007E            __CFG_MCLRE$OFF 0000  
-         __initialization 000F              __end_of_main 00D5                    ??_main 0079  
+         __initialization 000F              __end_of_main 00D3                    ??_main 0079  
                   _ANSELH 0189                    _INTCON 000B                    _SSPADD 0093  
                   _TRISC3 043B                    _TRISC4 043C                    _SSPBUF 0013  
                   _SSPCON 0014            __CFG_PWRTE$OFF 0000                    saved_w 007E  
  __end_of__initialization 0014            __pcstackCOMMON 0075   __size_of_I2C_Slave_Init 001A  
    I2C_Slave_Init@address 0078                __pnvCOMMON 0079                __pmaintext 00AA  
               __pintentry 0004                   _DECENAS 0070                   _SSPCON2 0091  
-                 _SSPSTAT 0094                   __ptext1 00D5                   __ptext2 0018  
-            __size_of_isr 0092      end_of_initialization 0014            _I2C_Slave_Init 00D5  
-               _PORTBbits 0006                 _TRISBbits 0086                 _TRISCbits 0087  
-  __end_of_I2C_Slave_Init 00EF       start_initialization 000F               __end_of_isr 00AA  
-__CFG_FOSC$INTRC_NOCLKOUT 0000           ?_I2C_Slave_Init 0075               __pbssCOMMON 0070  
-               ___latbits 0002                  _CONTADOR 0072         interrupt_function 0004  
-                _IOCBbits 0096                  _PIR1bits 000C                  _UNIDADES 0071  
-              _ADCON0bits 001F         __CFG_BOR4V$BOR40V 0000          ??_I2C_Slave_Init 0078  
-           __size_of_main 002B                _INTCONbits 000B                  intlevel1 0000  
-             _SSPCON2bits 0091                _SSPCONbits 0014  
+                 _SSPSTAT 0094                   __ptext1 00D3                   __ptext2 0018  
+            __size_of_isr 0092      end_of_initialization 0014            _I2C_Slave_Init 00D3  
+               _PORTBbits 0006                 _TRISCbits 0087    __end_of_I2C_Slave_Init 00ED  
+     start_initialization 000F               __end_of_isr 00AA  __CFG_FOSC$INTRC_NOCLKOUT 0000  
+         ?_I2C_Slave_Init 0075               __pbssCOMMON 0070                 ___latbits 0002  
+                _CONTADOR 0072         interrupt_function 0004                  _IOCBbits 0096  
+                _PIR1bits 000C                  _UNIDADES 0071                _ADCON0bits 001F  
+       __CFG_BOR4V$BOR40V 0000          ??_I2C_Slave_Init 0078             __size_of_main 0029  
+              _INTCONbits 000B                  intlevel1 0000               _SSPCON2bits 0091  
+              _SSPCONbits 0014  

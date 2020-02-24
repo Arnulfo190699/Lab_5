@@ -2720,11 +2720,41 @@ float ADC_2 = 0;
 float DECIMAL1_1 = 0;
 float DECIMAL2_2 = 0;
 
+void main(void) {
+
+
+
+    ANSEL = 0b00000001;
+    ANSELH = 0;
+
+    TRISA = 0b00000001;
+    TRISB = 0;
+    TRISD = 0;
+
+    PORTA = 0;
+    PORTB = 0;
+    PORTD = 0;
+
+    I2C_Slave_Init(0x50);
 
 
 
 
-void setup(void);
+
+    while(1){
+        ADCCONFIG(0);
+        if(bandera){
+            ADC_1 = ADRESH;
+            PORTB = ADC_1;
+            bandera = 0;
+            ADCON0bits.GO_DONE = 1;
+        }
+
+    }
+    return;
+}
+
+
 
 
 
@@ -2774,35 +2804,4 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
 
 
-}
-
-
-
-void main(void) {
-    ANSEL = 0b00000001;
-    ANSELH = 0;
-
-    TRISA = 0b00000001;
-    TRISB = 0;
-    TRISD = 0;
-
-    PORTA = 0;
-    PORTB = 0;
-    PORTD = 0;
-    I2C_Slave_Init(0x50);
-
-
-
-
-    while(1){
-        ADCCONFIG(0);
-        if(bandera){
-            ADC_1 = ADRESH;
-            PORTB = ADC_1;
-            bandera = 0;
-            ADCON0bits.GO_DONE = 1;
-        }
-
-    }
-    return;
 }

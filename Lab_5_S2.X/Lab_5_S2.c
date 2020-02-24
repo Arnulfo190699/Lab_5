@@ -45,11 +45,9 @@ void main(void) {
     
     /////////// CONFIGURACION DE PUERTOS////////////////////  
     TRISA = 0;
-    TRISB = 0;
+    TRISB = 0b00000011;                 //B0 Y B1 COMO ENTRADAS DIGITALES
     TRISD = 0;
-    TRISBbits.TRISB0 = 1;
-    TRISBbits.TRISB1 = 1;
-    TRISBbits.TRISB5 = 1;
+    
     PORTA = 0;
     PORTB = 0;
     PORTD = 0;
@@ -67,7 +65,7 @@ void main(void) {
     IOCBbits.IOCB1 = 1;
     INTCONbits.PEIE = 1;
     
-    I2C_Slave_Init(0x60);
+    I2C_Slave_Init(0x60);         //SE DEFINE ESTE SLAVE CON LA DIRECCION 0X60
     
     
     
@@ -80,7 +78,6 @@ void main(void) {
     }
 }
 
-////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// INTERRUPCIONES //////////////////////////
 
 
@@ -93,13 +90,13 @@ void __interrupt() isr(void){
             if (PORTBbits.RB0 == 1){
              BOTON = 1;
              CONTADOR++;  
-             if (CONTADOR >15){
+             if (CONTADOR >15){             //SE RESTRINGUE EL CONTADOR A 4 BITS
                  CONTADOR = 0;
              }
             }
             if (PORTBbits.RB1 == 1){
                 BOTON = 1;
-             if (CONTADOR == 0){
+             if (CONTADOR == 0){           //SE RESTRINGUE EL CONTADOR A 4 BITS
                  CONTADOR = 15;
              }
              else {

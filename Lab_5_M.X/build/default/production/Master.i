@@ -2745,6 +2745,7 @@ void main(void) {
     Lcd_Clear();
     I2C_Master_Init(100000);
     Lcd_Clear();
+
     Lcd_Set_Cursor(1,1);
     Lcd_Write_String ("S1");
     Lcd_Set_Cursor(7,1);
@@ -2753,6 +2754,7 @@ void main(void) {
     Lcd_Write_String ("S3");
 
     while(1){
+
 
         I2C_Master_Start();
         I2C_Master_Write(0x51);
@@ -2781,7 +2783,7 @@ void main(void) {
             Lcd_Write_Char('0');
             Lcd_Write_Int(DEC_1);
         }
-        Lcd_Write_Char('V');
+
 
         if(VAL_2 < 10){
             Lcd_Set_Cursor(8,2);
