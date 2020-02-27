@@ -6,7 +6,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "10 ./LCD.h
 [; ;./LCD.h: 10: void Lcd_Cmd (uint8_t command);
 [v _Lcd_Cmd `(v ~T0 @X0 0 ef1`uc ]
-"234 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+"352 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 352: extern volatile unsigned char PORTD __attribute__((address(0x008)));
+[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
+"234
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 234:     struct {
 [s S8 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S8 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
@@ -17,9 +20,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "245
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 245: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x006)));
 [v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
-"352
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 352: extern volatile unsigned char PORTD __attribute__((address(0x008)));
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 "194 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
@@ -263,26 +263,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _initLCD ]
 [f ]
 "10
-[; ;LCD.c: 10: _delay((unsigned long)((15)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;LCD.c: 10: _delay((unsigned long)((15)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "12
 [; ;LCD.c: 12: Lcd_Cmd(0x030);
 [e ( _Lcd_Cmd (1 -> -> 48 `i `uc ]
 "13
-[; ;LCD.c: 13: _delay((unsigned long)((5)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;LCD.c: 13: _delay((unsigned long)((5)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "15
 [; ;LCD.c: 15: Lcd_Cmd(0x030);
 [e ( _Lcd_Cmd (1 -> -> 48 `i `uc ]
 "16
-[; ;LCD.c: 16: _delay((unsigned long)((11)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 11 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;LCD.c: 16: _delay((unsigned long)((11)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 11 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "18
 [; ;LCD.c: 18: Lcd_Cmd(0x030);
 [e ( _Lcd_Cmd (1 -> -> 48 `i `uc ]
 "19
-[; ;LCD.c: 19: _delay((unsigned long)((160)*(8000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 160 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;LCD.c: 19: _delay((unsigned long)((160)*(4000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 160 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
 "22
 [; ;LCD.c: 22: Lcd_Cmd(0x38);
 [e ( _Lcd_Cmd (1 -> -> 56 `i `uc ]
@@ -310,20 +310,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _command `uc ~T0 @X0 1 r1 ]
 [f ]
 "32
-[; ;LCD.c: 32:     PORTBbits.RB6 = 0;
-[e = . . _PORTBbits 0 6 -> -> 0 `i `uc ]
-"33
-[; ;LCD.c: 33:     PORTD = command;
+[; ;LCD.c: 32:     PORTD = command;
 [e = _PORTD _command ]
+"33
+[; ;LCD.c: 33:     PORTBbits.RB1 = 0;
+[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
 "34
-[; ;LCD.c: 34:     PORTBbits.RB7 = 1;
-[e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
+[; ;LCD.c: 34:     PORTBbits.RB0 = 1;
+[e = . . _PORTBbits 0 0 -> -> 1 `i `uc ]
 "35
-[; ;LCD.c: 35:     _delay((unsigned long)((4)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 4 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;LCD.c: 35:     _delay((unsigned long)((4)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 4 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "36
-[; ;LCD.c: 36:     PORTBbits.RB7 = 0;
-[e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
+[; ;LCD.c: 36:     PORTBbits.RB0 = 0;
+[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
 "37
 [; ;LCD.c: 37: }
 [e :UE 144 ]
@@ -383,20 +383,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _var `uc ~T0 @X0 1 r1 ]
 [f ]
 "53
-[; ;LCD.c: 53:     PORTBbits.RB6 = 1;
-[e = . . _PORTBbits 0 6 -> -> 1 `i `uc ]
-"54
-[; ;LCD.c: 54:     PORTD = var;
+[; ;LCD.c: 53:     PORTD = var;
 [e = _PORTD -> _var `uc ]
+"54
+[; ;LCD.c: 54:     PORTBbits.RB1 = 1;
+[e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
 "55
-[; ;LCD.c: 55:     PORTBbits.RB7 = 1;
-[e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
+[; ;LCD.c: 55:     PORTBbits.RB0 = 1;
+[e = . . _PORTBbits 0 0 -> -> 1 `i `uc ]
 "56
-[; ;LCD.c: 56:     _delay((unsigned long)((4)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 4 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;LCD.c: 56:     _delay((unsigned long)((4)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 4 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "57
-[; ;LCD.c: 57:     PORTBbits.RB7 = 0;
-[e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
+[; ;LCD.c: 57:     PORTBbits.RB0 = 0;
+[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
 "58
 [; ;LCD.c: 58: }
 [e :UE 149 ]

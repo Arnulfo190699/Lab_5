@@ -2843,16 +2843,16 @@ void Lcd_Write_Int(uint8_t numero);
 
 
 void initLCD (void){
-_delay((unsigned long)((15)*(8000000/4000.0)));
+_delay((unsigned long)((15)*(4000000/4000.0)));
 
 Lcd_Cmd(0x030);
-_delay((unsigned long)((5)*(8000000/4000.0)));
+_delay((unsigned long)((5)*(4000000/4000.0)));
 
 Lcd_Cmd(0x030);
-_delay((unsigned long)((11)*(8000000/4000.0)));
+_delay((unsigned long)((11)*(4000000/4000.0)));
 
 Lcd_Cmd(0x030);
-_delay((unsigned long)((160)*(8000000/4000000.0)));
+_delay((unsigned long)((160)*(4000000/4000000.0)));
 
 
 Lcd_Cmd(0x38);
@@ -2865,11 +2865,11 @@ Lcd_Cmd(0x0C);
 
 
 void Lcd_Cmd(uint8_t command){
-    PORTBbits.RB6 = 0;
     PORTD = command;
-    PORTBbits.RB7 = 1;
-    _delay((unsigned long)((4)*(8000000/4000.0)));
-    PORTBbits.RB7 = 0;
+    PORTBbits.RB1 = 0;
+    PORTBbits.RB0 = 1;
+    _delay((unsigned long)((4)*(4000000/4000.0)));
+    PORTBbits.RB0 = 0;
 }
 
 void Lcd_Clear (void){
@@ -2886,11 +2886,11 @@ void Lcd_Set_Cursor(uint8_t posx, uint8_t posy){
 }
 
 void Lcd_Write_Char(char var){
-    PORTBbits.RB6 = 1;
     PORTD = var;
-    PORTBbits.RB7 = 1;
-    _delay((unsigned long)((4)*(8000000/4000.0)));
-    PORTBbits.RB7 = 0;
+    PORTBbits.RB1 = 1;
+    PORTBbits.RB0 = 1;
+    _delay((unsigned long)((4)*(4000000/4000.0)));
+    PORTBbits.RB0 = 0;
 }
 
 void Lcd_Write_String(char *var){

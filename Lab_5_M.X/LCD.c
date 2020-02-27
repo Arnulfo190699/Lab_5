@@ -29,11 +29,11 @@ Lcd_Cmd(0x0C);
 
 
 void Lcd_Cmd(uint8_t command){
-    PORTBbits.RB6 = 0; 
     PORTD = command;
-    PORTBbits.RB7 = 1;
+    PORTBbits.RB1 = 0; 
+    PORTBbits.RB0 = 1;
     __delay_ms(4);
-    PORTBbits.RB7 = 0;
+    PORTBbits.RB0 = 0;
 }
 
 void Lcd_Clear (void){
@@ -50,11 +50,11 @@ void Lcd_Set_Cursor(uint8_t posx, uint8_t posy){
 }
 
 void Lcd_Write_Char(char var){
-    PORTBbits.RB6 = 1;
     PORTD = var;
-    PORTBbits.RB7 = 1;
+    PORTBbits.RB1 = 1;
+    PORTBbits.RB0 = 1;
     __delay_ms(4);
-    PORTBbits.RB7 = 0;
+    PORTBbits.RB0 = 0;
 }
 
 void Lcd_Write_String(char *var){

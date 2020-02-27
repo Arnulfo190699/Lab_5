@@ -37,12 +37,21 @@
 #define _XTAL_FREQ 4000000
 
 
-uint8_t VAL_1 = 0;
+float VAL_1 = 0;
 uint8_t VAL_2 = 0;
 uint8_t ENT_1 = 0;
 uint8_t DEC_1 = 0;
 uint8_t DEC_2 = 0;
+uint8_t min = 0;
+uint8_t sec = 0;
 
+int  BCD_2_DEC(int to_convert){
+   return (to_convert >> 4) * 10 + (to_convert & 0x0F);
+}
+
+int DEC_2_BCD (int to_convert){
+   return ((to_convert / 10) << 4) + (to_convert % 10);
+}
 
 void main(void) {
 ///////////////////////CONFIGURACION DE PUERTOS ////////////////////////////
@@ -53,26 +62,29 @@ void main(void) {
     TRISD = 0;
     
     ANSEL = 0;
+    ANSELH = 0;
     
     PORTA = 0;//Valor inicial de los puertos
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     
+
 /////////////////////// LIBRERIA DE LCD //////////////////////////////////////////////////
     initLCD(); 
     Lcd_Clear();
     I2C_Master_Init(100000);            //DEFINIMOS LA FRECUENCIA DE LA LCD A 1KHZ
-    Lcd_Clear();                        //SE LIMPIA LA LCD
-    
+
     Lcd_Set_Cursor(1,1);                //SE DEFINEN LOS VALORES ESTATICOS DE LA LCD
     Lcd_Write_String ("S1");
     Lcd_Set_Cursor(7,1);
     Lcd_Write_String ("S2");
     Lcd_Set_Cursor(13,1);
     Lcd_Write_String ("S3");
+
     
     while(1){
+
    
      
         I2C_Master_Start();
@@ -84,6 +96,28 @@ void main(void) {
         I2C_Master_Start();            
         I2C_Master_Write(0x61);          //LEE LA DIRECCIÒN DEL SLAVE_2
         VAL_2 = I2C_Master_Read(0);      //GUARDA EL VALOR QUE LEE DEL SLAVE_2
+        I2C_Master_Stop();
+        __delay_ms(10);
+        
+        I2C_Master_Start();       
+        I2C_Master_Write(0xD0);                         
+        I2C_Master_Write(0);    
+        I2C_Master_Stop();
+
+        I2C_Master_Start();
+        I2C_Master_Write(0xD1);                              // Initialize data read
+        sec = BCD_2_DEC(I2C_Master_Read(0));                 
+        I2C_Master_Stop(); 
+
+        I2C_Master_Start();
+        I2C_Master_Write(0xD1);                              // Initialize data read
+        min = BCD_2_DEC(I2C_Master_Read(0));                
+        I2C_Master_Stop();  
+
+      //END Reading  
+        I2C_Master_Start();
+        I2C_Master_Write(0xD1);                              // Initialize data read
+        I2C_Master_Read(0);                                 
         I2C_Master_Stop();
         __delay_ms(10);
         
@@ -112,7 +146,23 @@ void main(void) {
             Lcd_Set_Cursor(7,2);
             Lcd_Write_Int(VAL_2);
         }        
+        __delay_ms(5);
         
+        Lcd_Set_Cursor(11,2);
+        if(min < 10){
+            Lcd_Write_String("0");
+            Lcd_Write_Int(min);
+        }else{
+            Lcd_Write_Int(min);
+        }
+        Lcd_Set_Cursor(13,2);
+        Lcd_Write_String(":");
+        if(sec < 10){
+            Lcd_Write_String("0");
+            Lcd_Write_Int(sec);
+        }else{
+            Lcd_Write_Int(sec);
+        }
     }
     
 }

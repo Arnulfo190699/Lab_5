@@ -2718,12 +2718,21 @@ void Lcd_Write_Int(uint8_t numero);
 
 
 
-uint8_t VAL_1 = 0;
+float VAL_1 = 0;
 uint8_t VAL_2 = 0;
 uint8_t ENT_1 = 0;
 uint8_t DEC_1 = 0;
 uint8_t DEC_2 = 0;
+uint8_t min = 0;
+uint8_t sec = 0;
 
+int BCD_2_DEC(int to_convert){
+   return (to_convert >> 4) * 10 + (to_convert & 0x0F);
+}
+
+int DEC_2_BCD (int to_convert){
+   return ((to_convert / 10) << 4) + (to_convert % 10);
+}
 
 void main(void) {
 
@@ -2734,6 +2743,7 @@ void main(void) {
     TRISD = 0;
 
     ANSEL = 0;
+    ANSELH = 0;
 
     PORTA = 0;
     PORTB = 0;
@@ -2741,10 +2751,10 @@ void main(void) {
     PORTD = 0;
 
 
+
     initLCD();
     Lcd_Clear();
     I2C_Master_Init(100000);
-    Lcd_Clear();
 
     Lcd_Set_Cursor(1,1);
     Lcd_Write_String ("S1");
@@ -2753,7 +2763,9 @@ void main(void) {
     Lcd_Set_Cursor(13,1);
     Lcd_Write_String ("S3");
 
+
     while(1){
+
 
 
         I2C_Master_Start();
@@ -2765,6 +2777,28 @@ void main(void) {
         I2C_Master_Start();
         I2C_Master_Write(0x61);
         VAL_2 = I2C_Master_Read(0);
+        I2C_Master_Stop();
+        _delay((unsigned long)((10)*(4000000/4000.0)));
+
+        I2C_Master_Start();
+        I2C_Master_Write(0xD0);
+        I2C_Master_Write(0);
+        I2C_Master_Stop();
+
+        I2C_Master_Start();
+        I2C_Master_Write(0xD1);
+        sec = BCD_2_DEC(I2C_Master_Read(0));
+        I2C_Master_Stop();
+
+        I2C_Master_Start();
+        I2C_Master_Write(0xD1);
+        min = BCD_2_DEC(I2C_Master_Read(0));
+        I2C_Master_Stop();
+
+
+        I2C_Master_Start();
+        I2C_Master_Write(0xD1);
+        I2C_Master_Read(0);
         I2C_Master_Stop();
         _delay((unsigned long)((10)*(4000000/4000.0)));
 
@@ -2786,14 +2820,30 @@ void main(void) {
 
 
         if(VAL_2 < 10){
-            Lcd_Set_Cursor(8,2);
+            Lcd_Set_Cursor(7,2);
             Lcd_Write_String("0");
             Lcd_Write_Int(VAL_2);
         }else{
-            Lcd_Set_Cursor(8,2);
+            Lcd_Set_Cursor(7,2);
             Lcd_Write_Int(VAL_2);
         }
+        _delay((unsigned long)((5)*(4000000/4000.0)));
 
+        Lcd_Set_Cursor(11,2);
+        if(min < 10){
+            Lcd_Write_String("0");
+            Lcd_Write_Int(min);
+        }else{
+            Lcd_Write_Int(min);
+        }
+        Lcd_Set_Cursor(13,2);
+        Lcd_Write_String(":");
+        if(sec < 10){
+            Lcd_Write_String("0");
+            Lcd_Write_Int(sec);
+        }else{
+            Lcd_Write_Int(sec);
+        }
     }
 
 }
